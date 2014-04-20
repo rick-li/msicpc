@@ -1,0 +1,34 @@
+{
+  "name": "msicpc",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "3.5.1",
+    "jade": "*",
+    "mongoose": "latest",
+    "q": "~1.0.1",
+    "underscore": "~1.6.0",
+    "mysql": "~2.1.1",
+    "squel": "~3.1.1",
+    "winston": "~0.7.3"
+  },
+  "devDependencies": {
+    "gulp": "~3.5.0",
+    "gulp-load-plugins": "~0.3.0",
+    "gulp-util": "~2.2.9",
+    "gulp-autoprefixer": "~0.0.6",
+    "gulp-jshint": "~1.4.0",
+    "gulp-imagemin": "~0.1.4",
+    "gulp-clean": "~0.2.4",
+    "gulp-cache": "~0.1.1",
+    "gulp-ruby-sass": "~0.3.0",
+    "gulp-size": "~0.1.2",
+    "gulp-connect": "~1.0.0",
+    "gulp-useref": "~0.1.2",
+    "gulp-bundle": "~0.2.0",
+    "wiredep": "~1.1.0",
+    "chai": "*"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

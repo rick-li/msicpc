@@ -1,0 +1,17 @@
+{
+    "name": "msicpc",
+    "private": true,
+    "dependencies": {
+        "bootstrap-sass": "git://github.com/twbs/bootstrap-sass.git#v3.1.0",
+        "modernizr": "~2.6.2",
+        "jquery": "~1.10.2",
+        "ng-grid": "latest",
+
+        "angular-route": "latest",
+        "angular-resource": "latest",
+        "angular-bootstrap": "latest",
+        "ng-file-upload": "latest",
+        "ckeditor": "4"
+    },
+    "devDependencies": {}
+}

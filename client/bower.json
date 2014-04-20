@@ -1,0 +1,23 @@
+{
+  "name": "sicpc mobile client",
+  "version": "0.0.0",
+  "authors": [
+    "Rick Li <racke1983cn@gmail.com>"
+  ],
+  "description": "sicpc mobile client",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "snapjs": "latest",
+    "OwlCarousel": "~1.3.2"
+  }
+
+}
