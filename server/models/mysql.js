@@ -5,7 +5,7 @@ var log = console.log;
 var pool = mysql.createPool({
   host: 'localhost',
   user: 'jvideo',
-  password: 'jvideo',
+  password: 'vwrite',
   database: 'jvideo'
 });
 
