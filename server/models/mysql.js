@@ -6,7 +6,7 @@ var pool = mysql.createPool({
   host: 'localhost',
   user: 'jvideo',
   password: 'jvideo',
-  database: 'jvideo'
+  database: 'vwrite'
 });
 
 
