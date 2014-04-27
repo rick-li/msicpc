@@ -1,0 +1,54 @@
+#content.page-content
+
+  .page-header
+    a.deploy-sidebar(href="#")
+    img.header-logo(src="images/misc/logo-header.png", width="71" alt="img")
+    a.deploy-contract(href="#")
+
+  .page-header-clear
+
+  .slider-container
+    .homepage-slider(data-snap-ignore="true")
+      - each item in cateData[0].items
+        div
+          .overlay
+          .homepage-slider-caption
+            h3 #{item.title}
+            p 
+          img(src="http://www.sicpc.com/video/media/k2/items/src/#{item.imageId}.jpg", class="responsive-image", alt="img")
+    .homepage-slider-controls
+      a.next-home(href="#")
+      a.prev-home(href="#")
+
+  .decoration
+
+  - if(cateData[1])
+    .container
+      a.next-home(href="#")
+      a.prev-home(href="#")
+      .quote-slider(data-snap-ignore="true")
+
+
+        - each item in cateData[1].items
+          div
+            .quote-item
+              img(src="http://www.sicpc.com/video/media/k2/items/src/#{item.imageId}.jpg" alt="img")
+              h4 #{item.title}
+
+    .decoration
+
+  - if(cateData[2])
+    
+    .container.no-bottom
+    - each item in cateData[2].items
+      .one-half-responsive
+        .thumb-left.no-bottom
+          img(src="http://www.sicpc.com/video/media/k2/items/src/#{item.imageId}.jpg" alt="img")
+          strong #{item.title}
+          em  #{item.intro}
+        .thumb-clear
+
+  .decoration
+  p.copyright.uppercase.center-text.no-bottom.
+    copyright 2014<br> 上海人口和计划生育
+

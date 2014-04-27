@@ -29,7 +29,7 @@ app.use(express.session({
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, '../', 'client')));
+app.use(express.static(path.join(__dirname, '../', 'client/app')));
 
 // development only
 if ('development' == app.get('env')) {

@@ -1,4 +1,72 @@
 define(function(require, exports, module) {
-  console.log('requirejs snapjs');
+  $(document).ready(function() {
+    var owlQuoteControls = $(".quote-slider");
+    owlQuoteControls.owlCarousel({
+      //Basic Stuff
+      items: 2,
+      itemsDesktop: [1199, 4],
+      itemsDesktopSmall: [980, 3],
+      itemsTablet: [768, 3],
+      itemsTabletSmall: [330, 1],
+      itemsMobile: [320, 1],
+      singleItem: false,
+      itemsScaleUp: false,
+      slideSpeed: 250,
+      paginationSpeed: 250,
+      rewindSpeed: 250,
+      pagination: false,
+      autoPlay: false,
+      autoHeight: true,
+    });
 
+
+    // Custom Navigation Events
+    $(".next-quote").click(function() {
+      owlQuoteControls.trigger('owl.next');
+      return false;
+    });
+    $(".prev-quote").click(function() {
+      owlQuoteControls.trigger('owl.prev');
+      return false;
+    });
+
+
+
+    var pauseOnDragging = function() {
+      return false;
+    };
+    $(".homepage-slider").owlCarousel({
+      slideSpeed: 500,
+      paginationSpeed: 500,
+      singleItem: true,
+      pagination: false,
+      // afterInit : progressBar,
+      // afterMove : moved,
+      startDragging: pauseOnDragging
+    });
+
+    // Custom Navigation Events
+    $(".next-home").click(function() {
+      $(".homepage-slider").trigger('owl.next');
+      return false;
+    });
+    $(".prev-home").click(function() {
+      $(".homepage-slider").trigger('owl.prev');
+      return false;
+    });
+
+    var snapper = new Snap({
+      element: document.getElementById('content')
+    });
+
+    $('.deploy-sidebar').click(function() {
+      //$(this).toggleClass('remove-sidebar');
+      if (snapper.state().state == "left") {
+        snapper.close();
+      } else {
+        snapper.open('left');
+      }
+      return false;
+    });
+  });
 });

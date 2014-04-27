@@ -4,8 +4,8 @@ var log = console.log;
 
 var pool = mysql.createPool({
   host: 'localhost',
-  user: 'sicpc',
-  password: 'sicpc',
+  user: 'jvideo',
+  password: 'jvideo',
   database: 'jvideo'
 });
 

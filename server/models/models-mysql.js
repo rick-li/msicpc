@@ -8,7 +8,7 @@ var getConnFn = pool.getConnection.bind(pool);
 
 var baseMethods = {
 
-  buildSql: function(table, fields, wheres, orders, limits) {
+  buildSql: function(table, fields, wheres, orders, limits, params) {
 
     var sql = squel.select().from(table);
     fields.forEach(function(field) {
@@ -22,6 +22,14 @@ var baseMethods = {
     Object.keys(orders).forEach(function(orderKey) {
       sql.order(orderKey, orders[orderKey]);
     });
+
+    if (params) {
+
+      var self = this;
+      Object.keys(params).forEach(function(paramKey) {
+        sql.where(self.alias + '.params like ' + '\'%' + paramKey + '=' + params[paramKey] + '%\'');
+      });
+    }
     if (limits) {
       if (limits[0]) {
         sql.offset(limits[0]);
@@ -41,29 +49,48 @@ var baseMethods = {
     this.execSql(sql, cb);
   },
   queryById: function(id, cb) {
-    var wheres = _.extend({
-      'c.id': '?'
-    }, this.defaultWheres);
+    var pair = {};
+    pair[this.alias + '.id'] = '?';
+    var wheres = _.extend(pair, this.defaultWheres);
     var sql = this.buildSql(this.tableName, this.defaultFields, wheres, this.defaultOrder);
     this.execSql(sql, cb, id);
   },
   queryByName: function(name, cb) {
-    var wheres = _.extend({
-      'c.name': '?'
-    }, this.defaultWheres);
+    var pair = {};
+    pair[this.alias + '.name'] = '?';
+    var wheres = _.extend(pair, this.defaultWheres);
     var sql = this.buildSql(this.tableName, this.defaultFields, wheres, this.defaultOrder);
     this.execSql(sql, cb, name);
   },
+
+
+
+
   execSql: function(sql, cb) {
     var args = Array.prototype.slice.call(arguments, 2);
-    console.log('args: ', args);
+    // console.log('args: ', args);
+
     q.nfcall(getConnFn).then(function(conn) {
-      var queryfn = conn.query.bind(conn);
-      console.log('sql is ', sql);
-      return q.nfcall(queryfn, sql, args);
-    }).then(function(res) {
-      var rows = res && res[0];
+
+      console.log('executing sql - ', sql);
+      var defer = q.defer();
+      conn.query(sql, args, function(err, res) {
+        if (err) {
+          defer.reject(err);
+        }
+        defer.resolve([res, conn]);
+      });
+      return defer.promise;
+    }).then(function(args) {
+      var res = args[0];
+      var conn = args[1];
+
+      var rows = res;
       cb(null, parseParams(rows));
+      if (conn) {
+        conn.release();
+      }
+
     }).fail(function(err) {
       errHandler(err);
       cb(err);
@@ -72,20 +99,22 @@ var baseMethods = {
 };
 
 var Categories = function() {
-  this.defaultWheres = {
-    'c.trash': 0,
-    'c.published': 1
-  };
-  this.defaultOrder = {
-    'c.ordering': true
-  };
-  this.defaultFields = ['c.id', 'c.name', 'c.params'];
-  this.tableName = prefix + 'k2_categories as c';
+  this.alias = 'c';
+  this.defaultWheres = {};
+  this.defaultWheres[this.alias + '.trash'] = 0;
+  this.defaultWheres[this.alias + '.published'] = 1;
+
+  this.defaultOrder = {};
+  this.defaultOrder[this.alias + '.ordering'] = true;
+
+  this.defaultFields = [this.alias + '.id', this.alias + '.name', this.alias + '.params'];
+  this.tableName = prefix + 'k2_categories as ' + this.alias;
 };
 _.extend(Categories.prototype, baseMethods);
 
 //======================= Start Item =================
 var Items = function() {
+  this.alias = 'i';
   this.defaultWheres = {
     'i.trash': 0,
     'i.published': 1
@@ -94,13 +123,22 @@ var Items = function() {
     'i.ordering': true
   };
 
-  this.defaultFields = ['i.id', 'i.title', 'i.params'];
-  this.tableName = prefix + 'k2_items as i';
+  this.defaultFields = [this.alias + '.id', this.alias + '.title', this.alias + '.params'];
+  this.tableName = prefix + 'k2_items as ' + this.alias;
 };
 _.extend(Items.prototype, baseMethods);
 
-
-Items.prototype.queryByCate = function(category, cb, start, limit) {
+//category, start, limit, cb
+Items.prototype.queryByCate = function() {
+  var args = Array.prototype.slice.call(arguments);
+  var cateId = args[0];
+  var start = null;
+  var limit = null;
+  var cb = args[args.length - 1];
+  if (args.length == 4) {
+    start = args[1];
+    limit = args[2];
+  }
   var wheres = _.extend({
     'i.catid': 'c.id',
     'c.id': '?'
@@ -108,12 +146,12 @@ Items.prototype.queryByCate = function(category, cb, start, limit) {
   var table = this.tableName + ',' + prefix + 'k2_categories as c';
   var sql = this.buildSql(table, this.defaultFields, wheres, this.defaultOrder, [start, limit]);
 
-  this.execSql(sql, cb, category.id);
+  this.execSql(sql, cb, cateId);
 };
 
 Items.prototype.queryLatestCreated = function(cb, start, limit) {
   var orders = _.extend({
-    'created': false
+    'i.created': false
   }, this.defaultOrder);
   var sql = this.buildSql(this.tableName, this.defaultFields, this.defaultWheres, orders, [start, limit]);
 
@@ -122,7 +160,7 @@ Items.prototype.queryLatestCreated = function(cb, start, limit) {
 
 Items.prototype.queryMostVisited = function(cb, start, limit) {
   var orders = _.extend({
-    'hits': false
+    'i.hits': false
   }, this.defaultOrder);
   var sql = this.buildSql(this.tableName, this.defaultFields, this.defaultWheres, orders, [start, limit]);
 
@@ -131,18 +169,22 @@ Items.prototype.queryMostVisited = function(cb, start, limit) {
 
 //======================= Start Menu =================
 var Menus = function() {
-  this.defaultWheres = {
-    'm.published': 1
-  };
-  this.defaultOrder = {
-    'm.ordering': true
-  };
+  this.alias = 'm';
+  this.defaultWheres = {};
+  this.defaultWheres[this.alias + '.published'] = 1;
 
-  this.defaultFields = ['m.name', 'm.type', 'm.link', 'm.params'];
-  this.tableName = prefix + 'menu as m';
+  this.defaultOrder = {};
+  this.defaultOrder[this.alias + '.ordering'] = true;
+
+  this.defaultFields = [this.alias + '.name', this.alias + '.type', this.alias + '.link', this.alias + '.params'];
+  this.tableName = prefix + 'menu as ' + this.alias;
 };
 _.extend(Menus.prototype, baseMethods);
 
+Menus.prototype.queryByParams = function(cb, params) {
+  var sql = this.buildSql(this.tableName, this.defaultFields, this.defaultWheres, this.defaultOrder, [], params);
+  this.execSql(sql, cb);
+}
 
 //====================== Utils ======================
 var errHandler = function(err) {

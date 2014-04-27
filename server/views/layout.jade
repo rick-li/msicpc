@@ -4,13 +4,15 @@ html
     title= 'Sicpc Mobile'
     meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
     meta(name="viewport", content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0")
-    link(rel='stylesheet', href='/app/styles/style.css')
-    link(rel='stylesheet', href='/app/styles/framework.css')
-    link(rel='stylesheet', href='/app/styles/sicpc.css')
-    script(src='/app/scripts/alameda.js', data-main='/app/scripts/main')
+    link(rel='stylesheet', href='styles/style.css')
+    link(rel='stylesheet', href='bower_components/OwlCarousel/owl-carousel/owl.carousel.css')
+    link(rel='stylesheet', href='styles/owl.theme.css')
+    link(rel='stylesheet', href='styles/framework.css')
+    link(rel='stylesheet', href='styles/sicpc.css')
+    script(src='scripts/alameda.js', data-main='scripts/main')
   body
     //- #preloader
     //-   #status
     //-     .center-text
     //-       正在加载中...
-    block content
+    block wrapper

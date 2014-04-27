@@ -42,12 +42,13 @@ describe('Categories', function() {
     it('should query by cate', function(done) {
       categories.queryByName('广播', function(err, rows) {
         expect(err).to.be.null;
-        items.queryByCate(rows[0], function(err, rows) {
-          expect(err).to.be.null;
-          console.log(rows.length);
-          assert(rows.length == 5);
-          done();
-        }, 1, 5);
+        items.queryByCate(rows[0].id, 1, 5,
+          function(err, rows) {
+            expect(err).to.be.null;
+            console.log(rows.length);
+            assert(rows.length == 5);
+            done();
+          });
       });
     });
     it('should query latest created', function(done) {
@@ -70,13 +71,17 @@ describe('Categories', function() {
   var menus = new models.Menus();
   describe('Menus', function() {
     it('should get menus', function(done) {
-      menus.queryAll(function(err, rows) {
+      menus.queryByParams(function(err, rows) {
         expect(err).to.be.null;
-        assert(rows.length > 10);
+        assert(rows.length > 6);
         done();
+      }, {
+        itemType: 'video'
       });
 
     });
+
+
   });
 
 });
