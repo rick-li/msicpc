@@ -1,0 +1,76 @@
+#content.page-content
+
+  .page-header
+    a.deploy-sidebar(href="#")
+    img.header-logo(src="client/images/misc/logo-header.png", width="71" alt="img")
+    a.deploy-contract(href="#")
+
+  .page-header-clear
+
+  .slider-container
+    .homepage-slider(data-snap-ignore="true")
+      - if (topItems)
+        - each item in topItems
+          div
+            .homepage-slider-caption
+              h3 #{item.name}
+              p 
+            img(src="data:image/png;base64,#{item.base64Image}", class="responsive-image", alt="img")
+    .homepage-slider-controls
+      a.next-home(href="#")
+      a.prev-home(href="#")
+
+  
+  img(src="client/images/sicpc/recommends.jpg", class="image-separator")
+  
+
+  .slider-container
+    .homepage-slider(data-snap-ignore="true")
+      - if (editors)
+        - each item in editors
+          div
+            .homepage-slider-caption
+              h3 #{item.name}
+              p 
+            img(src="#{item.uri}", class="responsive-image", alt="img")
+    .homepage-slider-controls
+      a.next-home(href="#")
+      a.prev-home(href="#")
+  
+
+
+  - for(var i=0;i<homeCates.nonRestCates.length;i+=2)
+    - var first = homeCates.nonRestCates[i];
+    - var second = homeCates.nonRestCates[i+1];
+      .home-categories-container
+        .home-cate-tab-wrap
+          .home-cate-tab.active(data-homeCateId="#{first.id}")
+            img(src="data:image/png;base64,#{first.base64Image}")
+          .home-cate-tab.second(data-homeCateId="#{second.id}")
+            img(src="data:image/png;base64,#{second.base64Image}")
+        .home-cate-content-wrap
+          .home-cate-content.active(data-homeCateId="#{first.id}")
+            - each category in first.data
+              - for(var j=0;j<3;j++)
+                - var item = category.items[j];
+                - if(item)
+                  .home-cate-content-item
+                    img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
+          .home-cate-content(data-homeCateId="#{second.id}")
+            - each category in second.data
+              - for(var j=0;j<3;j++)
+                - var item = category.items[j];
+                - if(item)
+                  .home-cate-content-item
+                    img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
+
+  - if(homeCates.restCate)
+    .home-categories-container
+      .home-cate-tab-wrap
+        .home-cate-tab
+          img(src="data:image/png;base64,#{homeCates.restCate.base64Image}")
+
+  .decoration
+  p.copyright.uppercase.center-text.no-bottom.
+    copyright 2014<br> 上海人口和计划生育
+

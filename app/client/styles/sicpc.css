@@ -1,0 +1,59 @@
+
+.page-sidebar {
+
+  background-repeat: no-repeat;
+
+  background-size: 100% 100%;
+
+}
+
+.sidebar-breadcrumb {
+
+  background-color: transparent;
+
+  color: white;
+
+}
+
+.sidebar-shortcuts {
+
+  background-color: transparent;
+
+}
+
+
+.owl-wrapper .responsive-image{
+  margin-bottom: 0;
+}
+
+.image-separator{
+  margin: 0 auto;
+}
+
+.home-cate-tab-wrap{
+  white-space: nowrap;
+}
+
+.home-cate-tab{
+  display: inline-block;
+  position: relative;
+  
+}
+
+.home-cate-tab img{
+   max-width: 190px;
+}
+
+.home-cate-tab.second{
+  left: -60px;
+  
+}
+
+.home-cate-tab.active{
+  z-index: 20;
+}
+
+
+.home-cate-content:not(.active){
+  display: none;
+}
