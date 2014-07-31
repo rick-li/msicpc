@@ -10,7 +10,7 @@
         "angular-route": "latest",
         "angular-resource": "latest",
         "angular-bootstrap": "latest",
-        "ng-file-upload": "latest"
+        "ng-file-upload": "~1.6.4"
         
     },
     "devDependencies": {}

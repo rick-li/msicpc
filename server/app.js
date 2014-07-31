@@ -16,6 +16,7 @@ app.set('view engine', 'jade');
 // app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
+app.use(express.bodyParser());
 //http://www.senchalabs.org/connect/session.html#session
 app.use(express.cookieParser(secretToken));
 app.use(express.session({
@@ -29,7 +30,7 @@ app.use(express.session({
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, '../', 'client/app')));
+app.use('/admin', express.static(path.join(__dirname, '../', 'admin')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -67,7 +68,9 @@ fs.readdirSync(ctrlDir).forEach(function(file) {
   if (file.substr(-3) == '.js') {
     var routeFile = path.join(ctrlDir, file);
     var route = require(routeFile);
-    route.controller(app);
+    if(route && route.controller){
+      route.controller(app);  
+    }
   }
 });
 

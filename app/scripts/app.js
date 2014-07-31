@@ -23,7 +23,7 @@ app.config(function($routeProvider) {
       controller: 'ItemsCtrl'
     })
     .otherwise({
-      redirectTo: '/items'
+      redirectTo: '/menus'
     });
 });
 

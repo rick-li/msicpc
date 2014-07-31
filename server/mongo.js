@@ -7,7 +7,7 @@ switch (env) {
     connStr = 'mongodb://localhost:27017/sicpc-video-unit';
     break;
   default:
-    connStr = 'mongodb://localhost:27017/sicpc-video';
+    connStr = 'mongodb://localhost:27017/msicpc';
     break;
 }
 mongoose.connect(connStr, function(err) {

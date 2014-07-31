@@ -16,3 +16,13 @@ $icon-font-path: "/bower_components/bootstrap-sass/vendor/assets/fonts/";
 .s-dropdown{
     position: relative;
 }
+.s-label-container{
+  height: 1.4em;
+  .label{
+    margin: 0 .2em;
+  }
+
+}
+.s-admin-image{
+  margin-top: .2em;
+}

@@ -44,33 +44,45 @@
 
           <label for="">分类</label>
           <div class="input-group">
-            <div><div ng-repeat="cate in selectedItem.categories">{{cate.name}} <a href ng-click="removeCategory(cate);">X</a></div></div>
+
+            <div class="s-label-container">
+              <span class="label label-info" ng-repeat="cate in selectedItem.categories">{{cate.name}} <a href ng-click="removeCategory($index, cate);">X</a> </span>
+            </div>
             <div>
-              <select ng-model="selectedCategory" ng-options="category for category in categories" ></select>
-              <button ng-click="addCategory(selectedCategory)">添加</button>
+              <select ng-model="selectedCategory" ng-options="cate as cate.name for cate in categories" ></select>
+              <button ng-click="addCategory($index, selectedCategory);" type="button" class="btn btn-default">添加</button>
 
             </div>
             
           </div>
         </div>
-        <div class="panel panel-default">
 
-          <div class="panel-heading">
-
-            <div class="collapse navbar-collapse">
-
-              <label for="">选项</label>
-              <a href="" ng-click="newOption()"><i class="fa fa-plus"></i> 新增</a>
-
-            </div>
-          </div>
-
+        <div class="form-group">
+          <label for="">父级菜单</label>
+          <select ng-model="selectedParentMenu" ng-options="menu as menu.name for menu in menus | filter:{isGroup:'true'}" ng-init="" onchange="angular.element(this).scope().debug()">
+             
+            <option value="">请选择...</option>
+          </select>
+          <button ng-click="" type="button" class="btn btn-default">添加</button>
+        </div>
+        <div class="form-group">
+          <label for="">是否是分组</label>
+          <input type="checkbox" ng-model="selectedItem.isGroup">
+         </div>
+          
+        <div class="form-group">
+          <label for="">图片</label>
+          
+          <input type="file" class="" onchange="angular.element(this).scope().fileChanged(this)">
+          <img ng-src="{{selectedItem.image}}" class="s-admin-image" >
+        </div>
+                          
          
         <div class="form-group ">
 
-          <div class="col-sm-12 ">
+
             <button style="width:100%" type="submit " class="btn btn-default ">保存</button>
-          </div>
+
 
         </div>
       </form>

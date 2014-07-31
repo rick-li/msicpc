@@ -93,16 +93,16 @@ gulp.task('wiredep', function() {
 
 // Watch
 gulp.task('watch', ['connect'], function() {
-  console.log('before live reload')
+  
   $.livereload.listen();
   // Watch for changes in `app` folder
-  // gulp.watch([
-  //   'app/*.html',
-  //   'app/styles/**/*.css',
-  //   'app/scripts/**/*.js',
-  //   'app/templates/**/*.html',
-  //   'app/images/**/*'
-  // ], $.livereload.changed);
+  gulp.watch([
+    'admin/*.html',
+    'admin/styles/**/*.css',
+    'admin/scripts/**/*.js',
+    'admin/templates/**/*.html',
+    'admin/images/**/*'
+  ], $.livereload.changed);
 
   // Watch .scss files
   gulp.watch('admin/styles/**/*.scss', ['styles']);
