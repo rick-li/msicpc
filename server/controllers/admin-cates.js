@@ -8,6 +8,9 @@ module.exports.controller = function(app) {
       if(err){
         console.log('err'); //TODO error handler.
       }else{
+        cates.forEach(function(cate) {
+          delete cate.params;
+        });
        res.send(cates); 
       }
       
