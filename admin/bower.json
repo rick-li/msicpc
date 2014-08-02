@@ -5,12 +5,13 @@
         "bootstrap-sass": "git://github.com/twbs/bootstrap-sass.git#v3.1.0",
         "modernizr": "~2.6.2",
         "jquery": "~1.10.2",
-        
+        "components-font-awesome": "~4.1.0",
 
         "angular-route": "latest",
         "angular-resource": "latest",
         "angular-bootstrap": "latest",
-        "ng-file-upload": "~1.6.4"
+        "ng-file-upload": "~1.6.4",
+        "underscore": "~1.6.0"
         
     },
     "devDependencies": {}

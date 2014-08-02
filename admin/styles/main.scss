@@ -1,21 +1,25 @@
-$icon-font-path: "/bower_components/bootstrap-sass/vendor/assets/fonts/";
-
+$icon-font-path: "../libs/bootstrap-sass/vendor/assets/fonts/";
+$fa-font-path: "../libs/components-font-awesome/fonts/";
 // bower:scss
 @import "bootstrap-sass/vendor/assets/stylesheets/bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
 
+.s-item-add{
+}
 
 .itemGridStyle {
     height: 500px;
 }
 
-
 .s-toolbar{
   margin-bottom: 10px;
 }
+
 .s-dropdown{
     position: relative;
 }
+
 .s-label-container{
   height: 1.4em;
   .label{
