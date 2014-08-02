@@ -16,7 +16,6 @@ module.exports.controller = function(app) {
       return defer.promise;
     };
     queryMenus().then(function(menus) {
-      console.log('menus', menus);
       res.send(menus);
     }).fail(function(err) {
       res.send(handleError(err));
