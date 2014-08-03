@@ -6,13 +6,17 @@ var app = angular.module('sicpcAdmin', ['ngRoute', 'ngResource', 'angularFileUpl
 
 app.config(function($routeProvider) {
   $routeProvider
-    .when('/topItems', {
-      templateUrl: 'templates/topItems.html',
-      controller: 'TopItemsCtrl'
+    .when('/homeCates', {
+      templateUrl: 'templates/homeCates.html',
+      controller: 'HomeCatesCtrl'
     })
     .when('/editorItems', {
       templateUrl: 'templates/editorItems.html',
       controller: 'EditorItemsCtrl'
+    })
+    .when('/topItems', {
+      templateUrl: 'templates/topItems.html',
+      controller: 'TopItemsCtrl'
     })
     .when('/menus', {
       templateUrl: 'templates/menus.html',

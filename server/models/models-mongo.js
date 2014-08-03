@@ -25,9 +25,18 @@ exports.TopItems = TopItems;
 
 var EditorItemsSchema = new Schema({
   name: String,
-  categories: {type: [{id: String, name: String}], default: []},
+  itemId: String,
   order: Number,
   image: {type: String, default: ''}
 });
 var EditorItems = mongoose.model('EditorItems', EditorItemsSchema);
 exports.EditorItems = EditorItems;
+
+var HomeCatesSchema = new Schema({
+  name: String,
+  order: Number,
+  categories: {type: [{id: String, name: String}], default: []},
+  image: {type: String, default: ''}
+});
+var HomeCates = mongoose.model('HomeCates', HomeCatesSchema);
+exports.HomeCates = HomeCates;
