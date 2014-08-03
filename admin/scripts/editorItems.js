@@ -1,4 +1,4 @@
-app.controller('MenusCtrl', function($scope, $log, $http, $adminCommonService) {
+app.controller('EditorItemsCtrl', function($scope, $log, $http, $adminCommonService) {
   $scope.new = function() {
     $scope.selectedItem = {
       categories: []
@@ -13,16 +13,14 @@ app.controller('MenusCtrl', function($scope, $log, $http, $adminCommonService) {
     }
     $scope.categories = [];
 
-    $.get('/admin/menus').done(function(items) {
+    $.get($scope.baseUrl).done(function(items) {
       $scope.items = items;
 
-      console.log($scope.items);
       //replace group to reference
-      items.forEach(function(menu) {
-        (menu.group && menu.group._id) && (menu.group = _.findWhere(items, {
-          _id: menu.group._id
+      items.forEach(function(item) {
+        (item.group && item.group._id) && (item.group = _.findWhere(items, {
+          _id: item.group._id
         }));
-
       });
 
       $scope.selectedItem = items[$scope.preSelectedIdx];
@@ -44,7 +42,6 @@ app.controller('MenusCtrl', function($scope, $log, $http, $adminCommonService) {
   };
 
   $scope.removeCategory = function(idx, cate) {
-
     $scope.selectedItem.categories.splice(idx, 1);
     $scope.categories.push(cate);
   };
@@ -54,8 +51,7 @@ app.controller('MenusCtrl', function($scope, $log, $http, $adminCommonService) {
     $scope.categories.splice(idx, 1);
   };
 
-  $scope.baseUrl = '/admin/menus';
+  $scope.baseUrl = '/admin/editoritems';
   //copy common methods from common service;
   $adminCommonService.copyCommonMethods($scope);
-
 });

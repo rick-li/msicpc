@@ -1,17 +1,6 @@
 var mongoose = require('../mongo.js');
 var Schema = mongoose.Schema;
 
-// var Item = mongoose.model('Item', {
-//   name: String,
-//   category: {
-//     type: Schema.Types.ObjectId,
-//     ref: 'Category'
-//   }
-// });
-
-// var Category = mongoose.model('Category', {
-//   name: String
-// });
 var MenuSchema = new Schema({
   name: String,
   isGroup: {type: Boolean, default: false},
@@ -20,7 +9,25 @@ var MenuSchema = new Schema({
   group: Object,
   image: {type: String, default: ''}
 });
-
 var Menus = mongoose.model('Menus', MenuSchema);
-
 exports.Menus = Menus;
+
+
+var TopItemsSchema = new Schema({
+  name: String,
+  itemId: String,
+  order: Number,
+  image: {type: String, default: ''}
+});
+var TopItems = mongoose.model('TopItems', TopItemsSchema);
+exports.TopItems = TopItems;
+
+
+var EditorItemsSchema = new Schema({
+  name: String,
+  categories: {type: [{id: String, name: String}], default: []},
+  order: Number,
+  image: {type: String, default: ''}
+});
+var EditorItems = mongoose.model('EditorItems', EditorItemsSchema);
+exports.EditorItems = EditorItems;

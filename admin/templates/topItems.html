@@ -6,7 +6,7 @@
           <div class="panel-heading">
             <div class="collapse navbar-collapse">
 
-              <label for="">菜单</label>
+              <label for="">置顶内容</label>
               <a href="" class="pull-right" ng-click="new()"><i class="fa fa-plus"></i> 新增</a>
 
             </div>
@@ -18,16 +18,14 @@
                <table class="table table-bordered table-hover table-striped tablesorter">
                 <thead>
                   <td>名字</td>
-                  <td>分组</td>
-                  <td>网站分类</td>
+                  
                   <td></td>
                   <td></td>
                 </thead>
                 <tbody>
                   <tr ng-repeat="item in items track by item._id" ng-click="$parent.selectedItem = item" ng-class="{success:item === $parent.selectedItem}">
-                    <td>{{item.name}}{{item.isGroup?'(分组)': ''}}</td>
-                    <td>{{item.group.name}}</td>
-                    <td>{{cateNames(item)}}</td>
+                    <td>{{item.name}}</td>
+                    
                     <td><button type="button" ng-click="moveup(item)"><i class="fa fa-arrow-up"></i></button><button type="button" ng-click="movedown(item)"><i class="fa fa-arrow-down"></i></button></td>
                     <td><button type="button" ng-click="delete(item)"><i class="fa fa-times"></i></button></td>
                   </tr>
@@ -44,43 +42,24 @@
       <form role="form" ng-submit="submit(selectedItem)">
         <div class="form-group">
           <label for="questionsetName">名字</label>
-          <input type="text" class="form-control" id="questionsetName" placeholder="" ng-model="selectedItem.name" required>
+          <input type="text" class="form-control" id="" placeholder="" ng-model="selectedItem.name" required>
         </div>
         
         
         <div class="form-group">
 
-          <label for="">分类</label>
+          <label for="">目标内容ID</label>
           <div class="input-group">
-
-            <div class="s-label-container">
-              <span class="label label-info" ng-repeat="cate in selectedItem.categories track by cate.id">{{cate.name}} <a href ng-click="removeCategory($index, cate);">X</a> </span>
-            </div>
-            <div>
-              <select ng-model="selectedCategory" ng-options="cate as cate.name for cate in categories track by cate.id" ></select>
-              <button ng-click="addCategory($index, selectedCategory);" type="button" class="btn btn-default">添加</button>
-
-            </div>
-            
+            <input type="text" class="form-control" placeholder="" ng-model="selectedItem.contentId" required>
           </div>
         </div>
+        
 
-        <div class="form-group">
-          <label for="">父级菜单</label>
-          <select ng-model="selectedItem.group" ng-options="menu as menu.name for menu in items | filter:{isGroup:'true'}">
-            <option value="">请选择...</option>
-          </select>
-          
-        </div>
-        <div class="form-group">
-          <label for="">是否是分组</label>
-          <input type="checkbox" ng-model="selectedItem.isGroup">
-         </div>
-          
         <div class="form-group">
           <label for="">图片</label>
           
           <input type="file" class="" onchange="angular.element(this).scope().fileChanged(this)">
+
           <img ng-src="{{selectedItem.image}}" ng-show="selectedItem.image" class="s-admin-image" >
         </div>
                           

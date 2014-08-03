@@ -1,9 +1,9 @@
 var MongoModels = require('../models/models-mongo.js');
-var Menus = MongoModels.Menus;
-var url = '/admin/menus';
+var TopItems = MongoModels.TopItems;
+var url = '/admin/topitems';
 
 var commonMethods = require('../common-http-methods.js');
 
 module.exports.controller = function(app) {
-  commonMethods.addCommonMethods(app, url, Menus);
+  commonMethods.addCommonMethods(app, url, TopItems);
 };
