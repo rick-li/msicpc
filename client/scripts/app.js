@@ -68,5 +68,17 @@ define(function(require, exports, module) {
       }
       return false;
     });
+
+    $('.submenu-deploy').click(function() {
+      $(this).parent().find('.nav-submenu').toggle(100);
+      $(this).parent().find('.sidebar-decoration').toggle(100);
+      $(this).find('em').toggleClass('dropdown-item');
+      return false;
+    });
+
+    $('.wide-image a').click(function() {
+      $(this).parent().parent().find('.wide-active').toggle(100);
+    });
+
   });
 });

@@ -15,7 +15,7 @@
             .homepage-slider-caption
               h3 #{item.name}
               p 
-            img(src="data:image/png;base64,#{item.base64Image}", class="responsive-image", alt="img")
+            img(src="data:image/png;base64,#{item.image}", class="responsive-image", alt="img")
     .homepage-slider-controls
       a.next-home(href="#")
       a.prev-home(href="#")
@@ -68,7 +68,7 @@
     .home-categories-container
       .home-cate-tab-wrap
         .home-cate-tab
-          img(src="data:image/png;base64,#{homeCates.restCate.base64Image}")
+          img(src="data:image/png;base64,#{homeCates.restCate.image}")
 
   .decoration
   p.copyright.uppercase.center-text.no-bottom.

@@ -1,4 +1,4 @@
-#sidebar.page-sidebar(style='background:url("images/sidebar-bg/bg.jpg") no-repeat 100% 100%;')
+#sidebar.page-sidebar(style='background:url("client/images/sidebar-bg/bg.jpg") no-repeat 100% 100%;')
   .page-sidebar-scroll
     .sidebar-shortcuts
       a.shortcut-search(href="#")
@@ -9,16 +9,27 @@
         input.search-field(type='text', name='search', onfocus='', value='')
 
     .sidebar-logo
-      img(src='images/misc/logo.png', height='52px')
+      img(src='client/images/misc/logo.png', height='52px')
 
-    .sidebar-breadcrumb.
-      导航
-
-    - each menu, i in menus
-      - var stateCls = menu.name == page?'selected-item':'unselected-item';
-      .navigation-item
-        a(href='index?page=#{menu.name}', class='nav-item home-icon') #{menu.name} <em class='#{stateCls}'></em>
-
+    
+    
+    - each menu1, i in menus
+      - var stateCls1 = menu1.name == page?'selected-item':'unselected-item'; //level1
+        .sidebar-breadcrumb.
+          #{menu1.name}
+        - var level2Menus = menu1.child || []; //level2
+        - each menu2 in level2Menus
+          - var stateCls2 =  menu2.name == page?'selected-item':'unselected-item'; //level2
+          - stateCls2 = menu2.child && menu2.child.length? 'dropdown-item': 'unselected-item';
+          - var parentCls = menu2.child && menu2.child.length? 'submenu-deploy':'';
+            .navigation-item
+              a(href="#", class="nav-item features-icon #{parentCls}") #{menu2.name} <em class="#{stateCls2}"></em>
+              - if(menu2.child)
+                .nav-submenu
+                  - var level3Menus = menu2.child || []; //level3
+                  - each menu3 in level3Menus
+                    - var stateCls3 = menu3.name && menu3.name == page?'selected-item':'unselected-item'; //level4
+                    a(href="#", class="nav-item features-icon") #{menu3.name} <em class="#{stateCls3}"></em>
     .sidebar-decoration
 
     .sidebar-breadcrumb.

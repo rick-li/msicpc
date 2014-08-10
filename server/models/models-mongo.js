@@ -7,6 +7,7 @@ var MenuSchema = new Schema({
   order: Number,
   categories: {type: [{id: String, name: String}], default: []},
   group: Object,
+  child: Array,
   image: {type: String, default: ''}
 });
 var Menus = mongoose.model('Menus', MenuSchema);
