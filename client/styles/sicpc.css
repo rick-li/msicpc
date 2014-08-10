@@ -20,3 +20,28 @@
   background-color: transparent;
 
 }
+
+.image-separator{
+  margin: 0 auto;
+}
+.home-cate-tab-wrap{
+  white-space: nowrap;
+}
+.home-cate-tab{
+  display: inline-block;
+}
+.home-cate-tab.active{
+  z-index: 10;
+}
+.home-cate-tab img{
+  width: 250px;
+}
+.home-cate-content:not(.active){
+  display: none;
+}
+.home-cate-content-item img{
+  margin: 0 auto;
+}
+.home-cate-tab.second{
+  left: -100px;
+}

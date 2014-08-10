@@ -15,7 +15,7 @@
             .homepage-slider-caption
               h3 #{item.name}
               p 
-            img(src="data:image/png;base64,#{item.image}", class="responsive-image", alt="img")
+            img(src="#{item.image}", class="responsive-image", alt="img")
     .homepage-slider-controls
       a.next-home(href="#")
       a.prev-home(href="#")
@@ -32,7 +32,7 @@
             .homepage-slider-caption
               h3 #{item.name}
               p 
-            img(src="#{item.uri}", class="responsive-image", alt="img")
+            img(src="#{item.image}", class="responsive-image", alt="img")
     .homepage-slider-controls
       a.next-home(href="#")
       a.prev-home(href="#")
@@ -45,9 +45,9 @@
       .home-categories-container
         .home-cate-tab-wrap
           .home-cate-tab.active(data-homeCateId="#{first.id}")
-            img(src="data:image/png;base64,#{first.base64Image}")
+            img(src="#{first.image}")
           .home-cate-tab.second(data-homeCateId="#{second.id}")
-            img(src="data:image/png;base64,#{second.base64Image}")
+            img(src="#{second.image}")
         .home-cate-content-wrap
           .home-cate-content.active(data-homeCateId="#{first.id}")
             - each category in first.data

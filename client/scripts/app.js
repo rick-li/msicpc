@@ -80,5 +80,14 @@ define(function(require, exports, module) {
       $(this).parent().parent().find('.wide-active').toggle(100);
     });
 
+    //init tabs
+    $('.home-cate-tab-wrap div').click(function(e) {
+      var homecateid = $(this).data('homecateid');
+      console.log('homecateid, ', homecateid);
+      $('.home-categories-container [data-homecateid='+homecateid+']').addClass('active');
+      $('.home-categories-container [data-homecateid!='+homecateid+']').removeClass('active');
+
+    });
+    
   });
 });
