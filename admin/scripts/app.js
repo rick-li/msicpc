@@ -2,7 +2,7 @@ $(document).ready(function() {
   angular.bootstrap(document, ['sicpcAdmin']);
 });
 
-var app = angular.module('sicpcAdmin', ['ngRoute', 'ngResource', 'angularFileUpload', 'ngGrid', 'ui.bootstrap']);
+var app = angular.module('sicpcAdmin', ['ngRoute', 'ngResource', 'angularFileUpload', 'ui.bootstrap']);
 
 app.config(function($routeProvider) {
   $routeProvider
