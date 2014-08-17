@@ -70,6 +70,10 @@ define(function(require, exports, module) {
       return false;
     });
 
+    $('.shortcut-close').click(function() {
+      snapper.close();
+    });
+
     $('.submenu-deploy').click(function() {
       $(this).parent().find('.nav-submenu').toggle(100);
       $(this).parent().find('.sidebar-decoration').toggle(100);
