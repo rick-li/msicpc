@@ -39,7 +39,7 @@
   margin: 0 auto;
 }
 .home-cate-tab-wrap{
-  height: 41px;
+  height: 34px;
   white-space: nowrap;
 }
 .home-cate-tab{
@@ -49,9 +49,7 @@
 .home-cate-tab.active{
   z-index: 10;
 }
-.home-cate-tab img{
-  height: 34px;
-}
+
 .home-cate-content:not(.active){
   display: none;
 }
