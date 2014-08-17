@@ -1,4 +1,5 @@
 define(function(require, exports, module) {
+  var item = require('item');
   $(document).ready(function() {
     var owlQuoteControls = $(".quote-slider");
     owlQuoteControls.owlCarousel({
@@ -91,8 +92,9 @@ define(function(require, exports, module) {
       console.log('homecateid, ', homecateid);
       $('.home-categories-container [data-homecateid='+homecateid+']').addClass('active');
       $('.home-categories-container [data-homecateid!='+homecateid+']').removeClass('active');
-
     });
+
+
     
   });
 });

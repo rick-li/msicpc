@@ -41,6 +41,23 @@ module.exports.controller = function(app) {
 
   });
 
+  var addItemsPromise = function(items) {
+    return q.all(items.map(function(item) {
+      var defer = q.defer();
+      itemModel.queryById(110, function(err, data) {
+        if (err) {
+          defer.reject(err);
+          return;
+        }
+        item.data = JSON.stringify(data[0]);
+        defer.resolve(item);
+      });
+      return defer.promise;
+    }));
+  };
+
+
+
   var renderHome = function(req, res, next) {
     console.log('in /home')
     q.all([getMenus(), editorModel.find().sort({
@@ -49,45 +66,57 @@ module.exports.controller = function(app) {
       order: 'asc'
     }).exec(), homeCateModel.find().sort({
       order: 'asc'
-    }).exec()]).spread(function(menus, editors, topItems, homeCates) {
-      var mixedArray = homeCates.map(function(homeCate) {
-        return homeCate.categories.map(function(cate) {
-          return assembleCateAndItems(cate.id, homeCate.id);
+    }).exec()])
+      .spread(function(menus, editors, topItems, homeCates) {
+        var defer = q.defer();
+        q.all([addItemsPromise(editors), addItemsPromise(topItems)]).spread(function(editorsData, topItemsData) {
+
+          defer.resolve([menus, editorsData, topItemsData, homeCates]);
+        }).fail(function(e) {
+          defer.reject(e);
         });
-      });
-
-      var catePromises = _.flatten(mixedArray);
-
-      q.all(catePromises).then(function(homeCatesArray) {
-        // console.log('home cates size ', homeCatesArray.length);
-        // console.log('homeCateId: ', _.pluck(homeCatesArray, 'homeCateId'));
-        var id2CateData = _.groupBy(homeCatesArray, 'homeCateId');
-        // console.log('id2CateData: ', id2CateData);
-
-        homeCates = homeCates.map(function(homeCate) {
-          homeCate.data = id2CateData[homeCate.id];
-          return homeCate;
+        return defer.promise;
+      })
+      .spread(function(menus, editors, topItems, homeCates) {
+        // console.log('===== data resolved. ', homeCates)
+        var mixedArray = homeCates.map(function(homeCate) {
+          return homeCate.categories.map(function(cate) {
+            return assembleCateAndItems(cate.id, homeCate.id);
+          });
         });
 
-        var restIndex = homeCates.length % 2;
-        var restItem;
-        if (restIndex != 0) {
-          restItem = homeCates[restIndex];
-          homeCates = homeCates.slice(0, restIndex - 1);
-        }
-        var data = {
-          menus: menus,
-          editors: editors,
-          topItems: topItems,
-          homeCates: {
-            nonRestCates: homeCates,
-            restItem: restItem
+        var catePromises = _.flatten(mixedArray);
+
+        q.all(catePromises).then(function(homeCatesArray) {
+          // console.log('home cates size ', homeCatesArray.length);
+          // console.log('homeCateId: ', _.pluck(homeCatesArray, 'homeCateId'));
+          var id2CateData = _.groupBy(homeCatesArray, 'homeCateId');
+          // console.log('id2CateData: ', id2CateData);
+
+          homeCates = homeCates.map(function(homeCate) {
+            homeCate.data = id2CateData[homeCate.id];
+            return homeCate;
+          });
+
+          var restIndex = homeCates.length % 2;
+          var restItem;
+          if (restIndex != 0) {
+            restItem = homeCates[restIndex];
+            homeCates = homeCates.slice(0, restIndex - 1);
           }
-        };
+          var data = {
+            menus: menus,
+            editors: editors,
+            topItems: topItems,
+            homeCates: {
+              nonRestCates: homeCates,
+              restItem: restItem
+            }
+          };
 
-        res.render('home', data);
+          res.render('home', data);
+        });
       });
-    });
   };
 
 

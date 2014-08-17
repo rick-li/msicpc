@@ -128,6 +128,15 @@ var Items = function() {
 };
 _.extend(Items.prototype, baseMethods);
 
+Items.prototype.queryById = function(id, cb) {
+  var fields = _.union([this.alias + '.video'], this.defaultFields);
+  var pair = {};
+  pair[this.alias + '.id'] = '?';
+  var wheres = _.extend(pair, this.defaultWheres);
+  var sql = this.buildSql(this.tableName, fields, wheres, this.defaultOrder);
+  this.execSql(sql, cb, id);
+},
+
 //category, start, limit, cb
 Items.prototype.queryByCate = function() {
   var args = Array.prototype.slice.call(arguments);

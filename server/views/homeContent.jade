@@ -11,7 +11,7 @@
     .homepage-slider(data-snap-ignore="true")
       - if (topItems)
         - each item in topItems
-          div
+          div(onclick="displayItemDetail(#{item.data})")
             .homepage-slider-caption
               h3 #{item.name}
               p 
