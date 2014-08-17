@@ -25,9 +25,11 @@
   margin: 0 auto;
 }
 .home-cate-tab-wrap{
+  height: 41px;
   white-space: nowrap;
 }
 .home-cate-tab{
+  position: absolute;
   display: inline-block;
 }
 .home-cate-tab.active{
@@ -43,5 +45,5 @@
   margin: 0 auto;
 }
 .home-cate-tab.second{
-  left: -100px;
+  right: 0;
 }

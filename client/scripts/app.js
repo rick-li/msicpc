@@ -56,7 +56,8 @@ define(function(require, exports, module) {
     });
 
     var snapper = new Snap({
-      element: document.getElementById('content')
+      element: document.getElementById('content'),
+      touchToDrag: false
     });
 
     $('.deploy-sidebar').click(function() {
