@@ -28,6 +28,7 @@ exports.TopItems = TopItems;
 var EditorItemsSchema = new Schema({
   name: String,
   data: Object,
+  desc: String,
   itemId: String,
   order: Number,
   image: {type: String, default: ''}

@@ -12,9 +12,6 @@
       - if (topItems)
         - each item in topItems
           div(onclick="displayItemDetail(#{item.data})")
-            .homepage-slider-caption
-              h3 #{item.name}
-              p 
             img(src="#{item.image}", class="responsive-image", alt="img")
     .homepage-slider-controls
       a.next-home(href="#")
@@ -24,15 +21,19 @@
   img(src="client/images/sicpc/recommends.jpg", class="image-separator")
   
 
-  .slider-container
+  .slider-container.editor-slider
     .homepage-slider(data-snap-ignore="true")
       - if (editors)
         - each item in editors
-          div
-            .homepage-slider-caption
-              h3 #{item.name}
-              p 
+          div 
             img(src="#{item.image}", class="responsive-image", alt="img")
+            .editor-caption-wrap
+              p.caption-title.
+                #{item.name}
+              p.caption-content.
+                #{item.desc}
+
+
     .homepage-slider-controls
       a.next-home(href="#")
       a.prev-home(href="#")

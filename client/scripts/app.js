@@ -90,11 +90,9 @@ define(function(require, exports, module) {
     $('.home-cate-tab-wrap div').click(function(e) {
       var homecateid = $(this).data('homecateid');
       console.log('homecateid, ', homecateid);
-      $('.home-categories-container [data-homecateid='+homecateid+']').addClass('active');
-      $('.home-categories-container [data-homecateid!='+homecateid+']').removeClass('active');
+      var container = $('[data-homecateid='+homecateid+']').closest('.home-categories-container');
+      container.find('[data-homecateid='+homecateid+']').addClass('active');
+      container.find('[data-homecateid!='+homecateid+']').removeClass('active');
     });
-
-
-    
   });
 });

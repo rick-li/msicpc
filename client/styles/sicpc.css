@@ -24,6 +24,36 @@
 .image-separator {
   margin: 0 auto;
 }
+
+.editor-slider {
+
+}
+
+.editor-slider .prev-home{
+  left: 40px;
+}
+
+.editor-caption-wrap{
+  width: 70%;
+  margin: 0 auto;
+}
+.editor-slider img{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.editor-caption-wrap .caption-title{
+  font-size: 14px;
+  font-weight: bold;
+  margin: 9px 0px;
+  text-align: center;
+}
+
+.editor-caption-wrap .caption-content{
+  margin: 0 10px 10px 10px;
+
+}
+
 .home-cate-tab-wrap {
   height: 34px;
   white-space: nowrap;
