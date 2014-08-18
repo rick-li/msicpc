@@ -36,16 +36,23 @@ define(function(require, exports, module) {
     var pauseOnDragging = function() {
       return false;
     };
-    $(".homepage-slider").owlCarousel({
+    
+    $('.homepage-slider:not(.top-slider)').owlCarousel({
       slideSpeed: 500,
       paginationSpeed: 500,
       singleItem: true,
       pagination: false,
-      // afterInit : progressBar,
-      // afterMove : moved,
       startDragging: pauseOnDragging
     });
 
+    $('.top-slider').owlCarousel({
+      slideSpeed: 500,
+      paginationSpeed: 500,
+      singleItem: true,
+      pagination: false,
+      autoPlay: 5000,
+      startDragging: pauseOnDragging
+    });
     // Custom Navigation Events
     $(".next-home").click(function() {
       $(".homepage-slider").trigger('owl.next');
