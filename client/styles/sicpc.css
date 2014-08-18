@@ -8,6 +8,18 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+.sidebar-logo{
+  padding-top: 0;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+.sidebar-logo img{
+  display: inline-block;
+  top: 21px;
+}
+.sidebar-logo span{
+  display: inline-block;
+}
 .unselected-item {
   color: rgba(255, 255, 255, 1.1);
 }
@@ -33,14 +45,11 @@
   left: 20px;
 }
 
-.editor-caption-wrap{
-  width: 70%;
+.editor-caption-wrap, .editor-slider img{
+  width: 60%;
   margin: 0 auto;
 }
-.editor-slider img{
-  width: 70%;
-  margin: 0 auto;
-}
+
 
 .editor-caption-wrap .caption-title{
   font-size: 14px;
