@@ -100,6 +100,9 @@ define(function(require, exports, module) {
       var container = $('[data-homecateid='+homecateid+']').closest('.home-categories-container');
       container.find('[data-homecateid='+homecateid+']').addClass('active');
       container.find('[data-homecateid!='+homecateid+']').removeClass('active');
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
     });
   });
 });

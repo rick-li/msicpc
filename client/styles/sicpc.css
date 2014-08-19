@@ -2,6 +2,7 @@
   width: auto;
 }
 .page-header {
+  position: absolute;
   background-color: #fff;
 }
 .page-sidebar {
@@ -13,12 +14,17 @@
   margin-bottom: 20px;
   padding-bottom: 15px;
 }
+.sidebar-logo span{
+  color: rgba(255, 255, 255, 1.1);
+  display: inline-block;
+}
 .sidebar-logo img{
   display: inline-block;
   top: 21px;
+  right: 11px;
 }
-.sidebar-logo span{
-  display: inline-block;
+.sidebar-breadcrumb{
+  font-size: 12px;
 }
 .unselected-item {
   color: rgba(255, 255, 255, 1.1);
@@ -78,7 +84,7 @@
   z-index: 10;
 }
 .home-cate-content:not(.active) {
-  display: none;
+  z-index: 1;
 }
 .home-cate-content-item img {
   margin: 0 auto;
