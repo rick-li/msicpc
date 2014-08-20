@@ -84,7 +84,7 @@
   z-index: 10;
 }
 .home-cate-content:not(.active) {
-  z-index: 1;
+  display: none;
 }
 .home-cate-content-item img {
   margin: 0 auto;
