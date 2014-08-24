@@ -58,6 +58,6 @@ module.exports.controller = function(app) {
     var query = url_parts.query;
     var videoUrl = query.videoUrl;
     
-    res.render('itemVideo', {videoUrl: videoUrl});
+    res.render('itemVideo', {url: videoUrl});
   });
 };
