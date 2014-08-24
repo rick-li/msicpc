@@ -1,0 +1,6 @@
+extends layout
+
+block wrapper
+  .all-elements.video-container
+    video(id="video"  controls autoplay onclick="this.play()")
+      source(src="http://www.sicpc.com/video#{url}")

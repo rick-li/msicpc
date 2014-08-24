@@ -17,7 +17,7 @@ exports.Menus = Menus;
 var TopItemsSchema = new Schema({
   name: String,
   data: Object,
-  itemId: String,
+  url: String,
   order: Number,
   image: {type: String, default: ''}
 });

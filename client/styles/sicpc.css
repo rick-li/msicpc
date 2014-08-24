@@ -95,7 +95,7 @@
 .video-container{
   position: static;
 }
-#video{
+.video-container video, #video{
   position: absolute;
   min-height: 100%;
   min-width: 100%;
