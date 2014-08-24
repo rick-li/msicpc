@@ -15,7 +15,7 @@ module.exports.controller = function(app) {
       var itemId = query.id;
       getContentPromise(itemId).then(function(url) {
         console.log('url is ', url);
-        res.render('itemVideo', {url: url});        
+        res.render('itemVideo', {url: 'http://www.sicpc.com/video'+url});        
       }).fail(function(err) {
         //TODO display error page.
         console.log('error ', err);
