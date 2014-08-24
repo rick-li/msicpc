@@ -1,6 +1,12 @@
 extends layout
 
 block wrapper
+  script.
+    if(typeof window.wView !== "undefined"){
+        window.wView.allowsInlineMediaPlayback = "YES";
+        window.wView.mediaPlaybackRequiresUserAction = "NO";
+    }
+
   .all-elements.video-container
-    video(id="video"  controls autoplay onclick="this.play()")
+    video(id="video"  controls preload autoplay="autoplay" onclick="this.play()")
       source(src="#{url}")

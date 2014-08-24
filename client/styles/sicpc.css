@@ -2,6 +2,9 @@
   width: auto;
   margin-top: -36px;
 }
+.top-slider-container .prev-home, .top-slider-container .next-home{
+  margin-top: -50px;
+}
 .page-header {
   position: absolute;
   background-color: #fff;
@@ -116,14 +119,9 @@
   position: static;
 }
 .video-container video, #video{
-  position: absolute;
-  min-height: 100%;
+  
   min-width: 100%;
-  height: auto !important;
-  width: auto !important;
-  left: 0;
-  top: 0;
-  z-index: 100;
+  
 }
 .hidden {
   display: none;
