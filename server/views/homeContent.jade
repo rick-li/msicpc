@@ -25,13 +25,14 @@
     .homepage-slider(data-snap-ignore="true")
       - if (editors)
         - each item in editors
-          div 
-            img(src="#{item.image}", class="responsive-image",  alt="#{item.text}")
-            .editor-caption-wrap
-              p.caption-title.
-                #{item.name}
-              p.caption-content.
-                #{item.desc}
+          div
+            a(href="videoItem?videoUrl=#{item.url}")
+              img(src="#{item.image}", class="responsive-image",  alt="#{item.text}")
+              .editor-caption-wrap
+                p.caption-title.
+                  #{item.name}
+                p.caption-content.
+                  #{item.desc}
 
 
     .homepage-slider-controls
