@@ -12,7 +12,7 @@
       - if (topItems)
         - each item in topItems
           a(href="videoItem?videoUrl=#{item.url}")
-            img(src="#{item.image}", class="responsive-image", alt="img")
+            img(src="#{item.image}", class="responsive-image", alt="#{item.text}")
     .homepage-slider-controls
       a.next-home(href="#")
       a.prev-home(href="#")
@@ -26,7 +26,7 @@
       - if (editors)
         - each item in editors
           div 
-            img(src="#{item.image}", class="responsive-image", alt="img")
+            img(src="#{item.image}", class="responsive-image",  alt="#{item.text}")
             .editor-caption-wrap
               p.caption-title.
                 #{item.name}

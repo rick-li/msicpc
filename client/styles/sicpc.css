@@ -1,13 +1,28 @@
 .header-logo {
   width: auto;
+  margin-top: -36px;
 }
 .page-header {
   position: absolute;
   background-color: #fff;
 }
+.page-header, .page-header-clear{
+  height: 40px;
+}
+
 .page-sidebar {
   background-repeat: no-repeat;
   background-size: 100% 100%;
+}
+.deploy-sidebar{
+  height: 40px;
+  background-position: 16px 14px;
+}
+.siderbar-shortcuts{
+  height: 40px;
+}
+.responsive-image{
+  margin-bottom: 0;
 }
 .sidebar-logo{
   padding-top: 0;
@@ -51,8 +66,12 @@
   left: 20px;
 }
 
-.editor-caption-wrap, .editor-slider img{
-  width: 60%;
+.editor-slider img{
+  width: 50%;
+  margin: 0 auto;
+}
+.editor-caption-wrap{
+  width: 80%;
   margin: 0 auto;
 }
 

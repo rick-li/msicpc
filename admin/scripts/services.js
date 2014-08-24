@@ -13,7 +13,7 @@ var AdminCommonService = function($log) {
     };
 
     $scope.moveup = function(item) {
-      var idx = $scope.menus.indexOf(item);
+      var idx = $scope.items.indexOf(item);
       if (idx === 0) {
         return;
       }
@@ -22,8 +22,9 @@ var AdminCommonService = function($log) {
     };
 
     $scope.movedown = function(item) {
-      var idx = $scope.menus.indexOf(item);
-      if (idx === $scope.menus.length - 1) {
+      
+      var idx = $scope.items.indexOf(item);
+      if (idx === $scope.items.length - 1) {
         return;
       }
       var targetIdx = idx + 1;
@@ -31,14 +32,17 @@ var AdminCommonService = function($log) {
     };
 
     $scope.doMove = function(item, idx, targetIdx) {
-      var targetItem = $scope.menus[targetIdx];
+      var targetItem = $scope.items[targetIdx];
       //swap pos
-      $scope.menus[idx] = targetItem;
-      $scope.menus[targetIdx] = item;
+      $scope.items[idx] = targetItem;
+      $scope.items[targetIdx] = item;
       //swap idx
       var tmpOrder = item.order;
       item.order = targetItem.order;
       targetItem.order = tmpOrder;
+
+      $scope.submit(item);
+      $scope.submit(targetItem);      
     };
 
     $scope.delete = function(item) {

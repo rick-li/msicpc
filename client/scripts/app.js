@@ -55,11 +55,13 @@ define(function(require, exports, module) {
     });
     // Custom Navigation Events
     $(".next-home").click(function() {
-      $(".homepage-slider").trigger('owl.next');
+      console.log($(this));
+      console.log($(this).closest(".homepage-slider"));
+      $(this).closest(".slider-container").find(".homepage-slider").trigger('owl.next');
       return false;
     });
     $(".prev-home").click(function() {
-      $(".homepage-slider").trigger('owl.prev');
+      $(this).closest(".slider-container").find(".homepage-slider").trigger('owl.prev');
       return false;
     });
 

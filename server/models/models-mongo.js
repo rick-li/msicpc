@@ -17,6 +17,7 @@ exports.Menus = Menus;
 var TopItemsSchema = new Schema({
   name: String,
   data: Object,
+  text: String,
   url: String,
   order: Number,
   image: {type: String, default: ''}
@@ -28,6 +29,7 @@ exports.TopItems = TopItems;
 var EditorItemsSchema = new Schema({
   name: String,
   data: Object,
+  text: String,
   desc: String,
   itemId: String,
   order: Number,
