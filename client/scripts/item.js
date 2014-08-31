@@ -28,15 +28,15 @@ define(function(require, exports, module) {
 
   function playImage(containerEl, url) {
     var images = url.split(',');
-    var shtml = '<div class="homepage-slider item-image-slider" data-snap-ignore="true">';
+    var shtml = '<div class="item-image-slider" data-snap-ignore="true">';
 
     shtml += images.map(function(url) {
       return '<div><img src="' + url + '" alt="" class="responsive-image"></div>';
-    }).join();
+    }).join('');
     shtml += '</div>';
     containerEl.find('.item-content').html(shtml);
 
-    $('.homepage-slider.item-image-slider').owlCarousel({
+    $('.item-image-slider').owlCarousel({
       slideSpeed: 500,
       paginationSpeed: 500,
       singleItem: true,
