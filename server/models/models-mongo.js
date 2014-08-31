@@ -18,6 +18,7 @@ var TopItemsSchema = new Schema({
   name: String,
   data: Object,
   text: String,
+  itemType: String,
   url: String,
   order: Number,
   image: {type: String, default: ''}

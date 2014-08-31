@@ -53,6 +53,13 @@
         </div>
         
         <div class="form-group">
+          <label for="">内容类型</label>
+          <div class="input-group">
+            <select ng-model="selectedItem.itemType" ng-options="type for type in itemTypes"></select>
+          </div>
+        </div>
+
+        <div class="form-group">
 
           <label for="">图片文字</label>
             <textarea type="text" class="form-control" placeholder="" ng-model="selectedItem.text" required/>

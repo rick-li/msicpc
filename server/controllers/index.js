@@ -105,6 +105,7 @@ module.exports.controller = function(app) {
             homeCates = homeCates.slice(0, restIndex - 1);
           }
           var data = {
+            page: '首页',
             menus: menus,
             editors: editors,
             topItems: topItems,
