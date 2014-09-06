@@ -1,13 +1,8 @@
 define(function(require, exports, module) {
   var regex = /{(\S+)}(\S+){\S+}/;
 
-  window.viewItemById = function(id) {
-    $.get('item?id=' + id).done(function(data) {
-      viewItem(data);
-    });
-  };
-
-  window.viewItem = function(data) {
+  window.viewItem = function(sData) {
+    var data = $.isPlainObject(sData)?sData: JSON.parse(sData);
     $('.all-elements').hide();
     var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn">返回</div></div><div class="item-content"></div></div>');
     containerEl.appendTo($('body'));
@@ -18,7 +13,6 @@ define(function(require, exports, module) {
     } else if (data.type === '文字') {
       playImage(containerEl, data.url);
     }
-    
 
     $('.item-back-btn').click(function() {
       $('.item-container').remove();

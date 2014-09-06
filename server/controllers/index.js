@@ -4,6 +4,7 @@ var url = require('url');
 var md5 = require('MD5');
 var mysqlModels = require('../models/models-mysql.js');
 var mongoModels = require('../models/models-mongo.js');
+var ItemCtrl = require('./item.js');
 
 
 var cateModel = new mysqlModels.Categories();
@@ -41,20 +42,7 @@ module.exports.controller = function(app) {
 
   });
 
-  var addItemsPromise = function(items) {
-    return q.all(items.map(function(item) {
-      var defer = q.defer();
-      itemModel.queryById(110, function(err, data) {
-        if (err) {
-          defer.reject(err);
-          return;
-        }
-        item.data = JSON.stringify(data[0]);
-        defer.resolve(item);
-      });
-      return defer.promise;
-    }));
-  };
+  
 
 
 
@@ -69,9 +57,8 @@ module.exports.controller = function(app) {
     }).exec()])
       .spread(function(menus, editors, topItems, homeCates) {
         var defer = q.defer();
-        q.all([addItemsPromise(editors), addItemsPromise(topItems)]).spread(function(editorsData, topItemsData) {
-
-          defer.resolve([menus, editorsData, topItemsData, homeCates]);
+        q.all([ItemCtrl.addItemsPromise(editors)]).spread(function(editorsData) {
+          defer.resolve([menus, editorsData, topItems, homeCates]);
         }).fail(function(e) {
           defer.reject(e);
         });
@@ -194,9 +181,10 @@ module.exports.controller = function(app) {
         //get image
         items = items.map(function(item) {
           item.imageId = md5('Image' + item.id);
+          item.data = ItemCtrl.getDataForItem(item); 
           return item;
         });
-
+        console.log('Items: ', items);
         cateWithItems.items = items;
         cateWithItems.homeCateId = homeCateId;
         defer.resolve(cateWithItems);

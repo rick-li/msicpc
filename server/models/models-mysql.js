@@ -123,17 +123,17 @@ var Items = function() {
     'i.ordering': true
   };
 
-  this.defaultFields = [this.alias + '.id', this.alias + '.title', this.alias + '.params'];
+  this.defaultFields = [this.alias + '.id', this.alias + '.title', this.alias + '.params', this.alias + '.gallery', this.alias + '.video'];
   this.tableName = prefix + 'k2_items as ' + this.alias;
 };
 _.extend(Items.prototype, baseMethods);
 
 Items.prototype.queryById = function(id, cb) {
-  var fields = _.union([this.alias + '.video'], [this.alias + '.gallery'], this.defaultFields);
+  
   var pair = {};
   pair[this.alias + '.id'] = '?';
   var wheres = _.extend(pair, this.defaultWheres);
-  var sql = this.buildSql(this.tableName, fields, wheres, this.defaultOrder);
+  var sql = this.buildSql(this.tableName, this.defaultFields, wheres, this.defaultOrder);
   this.execSql(sql, cb, id);
 },
 
