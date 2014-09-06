@@ -55,7 +55,7 @@
               - for(var j=0;j<3;j++)
                 - var item = category.items[j];
                 - if(item)
-                  .home-cate-content-item
+                  .home-cate-content-item(data-id="#{item.id}")
                     - var data = JSON.stringify(item.data);
                     a(href="javascript:viewItem('#{data}')")
                       img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
@@ -64,7 +64,7 @@
               - for(var j=0;j<3;j++)
                 - var item = category.items[j];
                 - if(item)
-                  .home-cate-content-item
+                  .home-cate-content-item(data-id="#{item.id}")
                     - var data = JSON.stringify(item.data);
                     a(href="javascript:viewItem('#{data}')")
                       img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
@@ -72,7 +72,7 @@
   - if(homeCates.restCate)
     .home-categories-container
       .home-cate-tab-wrap
-        .home-cate-tab
+        .home-cate-tab(data-id="#{item.id}")
           - var data = JSON.stringify(item.data);
           a(href="javascript:viewItem('#{data}')")
             img(src="data:image/png;base64,#{homeCates.restCate.image}")

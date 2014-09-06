@@ -179,7 +179,10 @@ module.exports.controller = function(app) {
       itemModel.queryByCate(cate.id, function(err, items) {
         // console.log('query by cate size', items.length);
         //get image
-        items = items.map(function(item) {
+        items = items.filter(function(item) {
+          return !!item;
+        }).map(function(item) {
+
           item.imageId = md5('Image' + item.id);
           item.data = ItemCtrl.getDataForItem(item); 
           return item;
