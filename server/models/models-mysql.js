@@ -123,7 +123,7 @@ var Items = function() {
     'i.ordering': true
   };
 
-  this.defaultFields = [this.alias + '.id', this.alias + '.title', this.alias + '.params', this.alias + '.gallery', this.alias + '.video'];
+  this.defaultFields = [this.alias + '.id', this.alias + '.title', this.alias + '.params', this.alias + '.gallery', this.alias + '.video', this.alias + '.introtext'];
   this.tableName = prefix + 'k2_items as ' + this.alias;
 };
 _.extend(Items.prototype, baseMethods);

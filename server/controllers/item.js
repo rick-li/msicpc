@@ -1,6 +1,7 @@
 var url = require('url');
 var q = require('q');
 var fs = require('fs');
+var md5 = require('MD5');
 var mysqlModels = require('../models/models-mysql.js');
 
 
@@ -29,7 +30,7 @@ var addItemsPromise = function(items) {
         return;
       }
       if(itemData){
-        item.data = getDataForItem(itemData);  
+        item.data = getDataForItem(itemData, item.itemId);  
       }
       
       defer.resolve(item);
@@ -40,10 +41,12 @@ var addItemsPromise = function(items) {
   }));
 };
 
-var getDataForItem = function(itemData) {
+var getDataForItem = function(itemData, itemId) {
   var data = {};
-
-  if (itemData && itemData.video) {
+  if(!itemData){
+    return data;
+  }
+  if (itemData.video) {
     data.type = '视频';
     matches = itemData.video.match(contentRe);
     if (matches) {
@@ -53,8 +56,7 @@ var getDataForItem = function(itemData) {
       }
       data.url = 'http://www.sicpc.com/video' + url;
     }
-  }
-  if (itemData && itemData.gallery) {
+  }else if ( itemData.gallery) {
     data.type = '图片';
     matches = itemData.gallery.match(contentRe);
     if (matches) {
@@ -62,15 +64,27 @@ var getDataForItem = function(itemData) {
       var galleryPath = rootPath + 'galleries/' + galleryId;
       if (fs.existsSync(galleryPath)) {
         data.url = fs.readdirSync(galleryPath).filter(function(f) {
-          console.log(f);
+          
           return (/(jpg|JPG|png|PNG)$/).test(f);
-        }).map(function(f) {
-          console.log(f);
+        }).sort().map(function(f) {
+          
           return 'http://www.sicpc.com/video/media/k2/galleries/' + galleryId + '/' + f;
         }).join(',');
+        console.log('data url', data.url)
       }
     }
+  }else{
+    data.type = '文字';
+    data.text = itemData.introtext;
+    
+    var rImagePath = 'items/cache/'+md5('Image'+itemId)+'_Generic.jpg';
+    console.log(itemId, '===>',rImagePath);
+    var imagePath = rootPath + rImagePath;
+    if(fs.existsSync(imagePath)){
+      data.image = 'http://www.sicpc.com/video/media/k2/'+rImagePath;
+    }
   }
+  data.title = itemData.title;
   return data;
 };
 

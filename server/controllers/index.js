@@ -184,10 +184,10 @@ module.exports.controller = function(app) {
         }).map(function(item) {
 
           item.imageId = md5('Image' + item.id);
-          item.data = ItemCtrl.getDataForItem(item); 
+          item.data = ItemCtrl.getDataForItem(item, item.id); 
           return item;
         });
-        console.log('Items: ', items);
+        
         cateWithItems.items = items;
         cateWithItems.homeCateId = homeCateId;
         defer.resolve(cateWithItems);

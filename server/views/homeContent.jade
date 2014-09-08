@@ -11,7 +11,7 @@
     .homepage-slider.top-slider(data-snap-ignore="true")
       - if (topItems)
         - each item in topItems
-          a(href="javascript:viewItem({type: '#{item.itemType}', url:'#{item.url}'})")
+          a(href="javascript:viewItem({title: '#{item.name}', type: '#{item.itemType}', url:'#{item.url}'})")
             img(src="#{item.image}", class="responsive-image", alt="#{item.text}")
     .homepage-slider-controls
       a.next-home(href="#")
