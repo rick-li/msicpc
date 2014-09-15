@@ -1,6 +1,12 @@
 define(function(require, exports, module) {
   var item = require('item');
   $(document).ready(function() {
+
+    //select menu item
+    $('.nav-item:contains('+currentPage+')').find('em').removeClass('unselected-item').addClass('selected-item')
+    .parents('.navigation-item').find('.submenu-deploy em').removeClass('dropdown-item')
+    .parent().next('.nav-submenu').show();
+    
     var owlQuoteControls = $(".quote-slider");
     owlQuoteControls.owlCarousel({
       //Basic Stuff
