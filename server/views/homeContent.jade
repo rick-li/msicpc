@@ -11,7 +11,7 @@
     .homepage-slider.top-slider(data-snap-ignore="true")
       - if (topItems)
         - each item in topItems
-          a(href="javascript:viewItem({title: '#{item.name}', type: '#{item.itemType}', url:'#{item.url}'})")
+          a(href="javascript:viewItem('#{item.name}', '#{item.itemType}', '#{item.image}', '#{item.text}', '#{item.url}')")
             img(src="#{item.image}", class="responsive-image", alt="#{item.text}")
     .homepage-slider-controls
       a.next-home(href="#")
@@ -26,8 +26,8 @@
       - if (editors)
         - each item in editors
           div
-            - var data = JSON.stringify(item.data);
-            a(href="javascript:viewItem('#{data}')")
+            - var data = item.data;
+            a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
               img(src="#{item.image}", class="responsive-image",  alt="#{item.text}")
               .editor-caption-wrap
                 p.caption-content.
@@ -56,8 +56,8 @@
                 - var item = category.items[j];
                 - if(item)
                   .home-cate-content-item(data-id="#{item.id}")
-                    - var data = JSON.stringify(item.data);
-                    a(href="javascript:viewItem('#{data}')")
+                    - var data = item.data;
+                    a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
                       img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
           .home-cate-content(data-homeCateId="#{second.id}")
             - each category in second.data
@@ -65,16 +65,16 @@
                 - var item = category.items[j];
                 - if(item)
                   .home-cate-content-item(data-id="#{item.id}")
-                    - var data = JSON.stringify(item.data);
-                    a(href="javascript:viewItem('#{data}')")
+                    - var data = item.data;
+                    a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
                       img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
 
   - if(homeCates.restCate)
     .home-categories-container
       .home-cate-tab-wrap
         .home-cate-tab(data-id="#{item.id}")
-          - var data = JSON.stringify(item.data);
-          a(href="javascript:viewItem('#{data}')")
+          - var data = item.data;
+          a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
             img(src="data:image/png;base64,#{homeCates.restCate.image}")
 
   .decoration

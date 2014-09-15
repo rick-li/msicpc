@@ -32,17 +32,40 @@ module.exports.controller = function(app) {
     if (query.page === '首页') {
       renderHome(req, res, next);
       return;
+    }else{
+      // res.send('hello');
+      renderOthers(req, res, next, query);
+      // return;
     }
 
-    res.render('index', {
-      menus: [],
-      cateData: [],
-      page: query.page
-    });
 
   });
 
-  
+
+  var renderOthers = function(req, res, next, query) {
+    console.log('in /others');
+    var page = query.page;
+
+    q.all([q.nfcall(menuModel.findOne.bind(menuModel), { name: page }), getMenus()]).spread(function(menu, allMenus) {
+      
+      var aCates = _.pluck(menu.categories, 'id');
+      
+      getCategoriesData(aCates).then(function(rData) {
+        console.log('====> data received.')
+        var data = {
+          page: page,
+          menus: allMenus,
+          items: rData[0].items
+        };
+
+        console.log('====> before rendering');
+        res.render('index', data);
+        // res.send('hello');
+      }).fail(function(e) {
+        console.log('failed', e);
+      });
+    });
+  };
 
 
 
@@ -191,7 +214,7 @@ module.exports.controller = function(app) {
         cateWithItems.items = items;
         cateWithItems.homeCateId = homeCateId;
         defer.resolve(cateWithItems);
-      });
+      }, 0 , 20);
     });
     return defer.promise;
   };

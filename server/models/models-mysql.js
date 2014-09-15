@@ -143,10 +143,10 @@ Items.prototype.queryByCate = function() {
   var cateId = args[0];
   var start = null;
   var limit = null;
-  var cb = args[args.length - 1];
+  var cb = args[1];
   if (args.length == 4) {
-    start = args[1];
-    limit = args[2];
+    start = args[2];
+    limit = args[3];
   }
   var wheres = _.extend({
     'i.catid': 'c.id',

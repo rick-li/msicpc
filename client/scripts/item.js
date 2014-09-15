@@ -1,37 +1,33 @@
 define(function(require, exports, module) {
   var regex = /{(\S+)}(\S+){\S+}/;
 
-  window.viewItem = function(sData) {
+  window.viewItem = function(title, type, image, text, url) {
+    (image === 'undefined') && (image = null);
+    (text === 'undefined') && (text = null);
+    (url === 'undefined') && (url = null);
+    
     $('.all-elements').hide();
     var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn">返回</div><div class="item-title"></div></div><div class="item-content"></div></div>');
     containerEl.appendTo($('body'));
     
-    var title = "";
-    if(!$.isPlainObject(sData)){
-      
-      var m = sData.match(/"title":"(.+?)"/);
-      title = m? m[1]:'';
-    }else{
-      title = sData.title;
-    }
     
     containerEl.find('.item-title').text(title);    
 
-    if (/文字/.test(sData)) {
-      sData = sData.replace(/[\r\n]/g, '');
-      var m = sData.match(/"text":"(.+?)"/);
-      var text = m ? m[1] : '';
-      m = sData.match(/"image":"(.+?)"/);
-      var image = m ? m[1] : '';
+    if (type==='文字') {
+      // sData = sData.replace(/[\r\n]/g, '');
+      // var m = sData.match(/"text":"(.+?)"/);
+      // var text = m ? m[1] : '';
+      // m = sData.match(/"image":"(.+?)"/);
+      // var image = m ? m[1] : '';
       playText(containerEl, text, image);
 
     } else {
-      var data = $.isPlainObject(sData) ? sData : JSON.parse(sData);
+      // var data = $.isPlainObject(sData) ? sData : JSON.parse(sData);
 
-      if (data.type === '视频') {
-        playVideo(containerEl, data.url);
-      } else if (data.type === '图片') {
-        playImage(containerEl, data.url);
+      if (type === '视频') {
+        playVideo(containerEl, url);
+      } else if (type === '图片') {
+        playImage(containerEl, url);
       }
     }
 

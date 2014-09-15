@@ -25,13 +25,13 @@
           - stateCls2 = menu2.child && menu2.child.length? 'dropdown-item': 'unselected-item';
           - var parentCls = menu2.child && menu2.child.length? 'submenu-deploy':'';
             .navigation-item
-              a(href="#", class="nav-item features-icon #{parentCls}") #{menu2.name} <em class="#{stateCls2}"></em>
+              a(href="index?page=#{menu2.name}", class="nav-item features-icon #{parentCls}") #{menu2.name} <em class="#{stateCls2}"></em>
               - if(menu2.child)
                 .nav-submenu
                   - var level3Menus = menu2.child || []; //level3
                   - each menu3 in level3Menus
                     - var stateCls3 = menu3.name && menu3.name == page?'selected-item':'unselected-item'; //level4
-                    a(href="#", class="nav-item features-icon") #{menu3.name} <em class="#{stateCls3}"></em>
+                    a(href="index?page=#{menu3.name}", class="nav-item features-icon") #{menu3.name} <em class="#{stateCls3}"></em>
     .sidebar-decoration
 
     .sidebar-breadcrumb.
