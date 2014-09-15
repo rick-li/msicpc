@@ -14,15 +14,8 @@ define(function(require, exports, module) {
     containerEl.find('.item-title').text(title);    
 
     if (type==='文字') {
-      // sData = sData.replace(/[\r\n]/g, '');
-      // var m = sData.match(/"text":"(.+?)"/);
-      // var text = m ? m[1] : '';
-      // m = sData.match(/"image":"(.+?)"/);
-      // var image = m ? m[1] : '';
       playText(containerEl, text, image);
-
     } else {
-      // var data = $.isPlainObject(sData) ? sData : JSON.parse(sData);
 
       if (type === '视频') {
         playVideo(containerEl, url);

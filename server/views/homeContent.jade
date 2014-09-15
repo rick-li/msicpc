@@ -11,6 +11,7 @@
     .homepage-slider.top-slider(data-snap-ignore="true")
       - if (topItems)
         - each item in topItems
+          - if(item)
           a(href="javascript:viewItem('#{item.name}', '#{item.itemType}', '#{item.image}', '#{item.text}', '#{item.url}')")
             img(src="#{item.image}", class="responsive-image", alt="#{item.text}")
     .homepage-slider-controls
@@ -25,13 +26,15 @@
     .homepage-slider(data-snap-ignore="true")
       - if (editors)
         - each item in editors
+          
           div
             - var data = item.data;
-            a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
-              img(src="#{item.image}", class="responsive-image",  alt="#{item.text}")
-              .editor-caption-wrap
-                p.caption-content.
-                  #{item.desc}
+            - if(data)
+              a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
+                img(src="#{item.image}", class="responsive-image",  alt="#{item.text}")
+                .editor-caption-wrap
+                  p.caption-content.
+                    #{item.desc}
 
 
     .homepage-slider-controls
@@ -54,28 +57,29 @@
             - each category in first.data
               - for(var j=0;j<3;j++)
                 - var item = category.items[j];
-                - if(item)
+                - if(item.data)
                   .home-cate-content-item(data-id="#{item.id}")
                     - var data = item.data;
-                    a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
-                      img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
+                      a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
+                        img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
           .home-cate-content(data-homeCateId="#{second.id}")
             - each category in second.data
               - for(var j=0;j<3;j++)
                 - var item = category.items[j];
-                - if(item)
+                - if(item.data)
                   .home-cate-content-item(data-id="#{item.id}")
                     - var data = item.data;
-                    a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
-                      img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
+                      a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
+                        img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
 
   - if(homeCates.restCate)
     .home-categories-container
       .home-cate-tab-wrap
         .home-cate-tab(data-id="#{item.id}")
           - var data = item.data;
-          a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
-            img(src="data:image/png;base64,#{homeCates.restCate.image}")
+          - if(data)
+            a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
+              img(src="data:image/png;base64,#{homeCates.restCate.image}")
 
   .decoration
   p.copyright.uppercase.center-text.no-bottom.
