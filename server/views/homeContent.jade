@@ -66,7 +66,7 @@
             - each category in second.data
               - for(var j=0;j<3;j++)
                 - var item = category.items[j];
-                - if(item.data)
+                - if(item && item.data)
                   .home-cate-content-item(data-id="#{item.id}")
                     - var data = item.data;
                       a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
@@ -76,8 +76,9 @@
     .home-categories-container
       .home-cate-tab-wrap
         .home-cate-tab(data-id="#{item.id}")
-          - var data = item.data;
-          - if(data)
+          
+          - if(item && item.data)
+            - var data = item.data;
             a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
               img(src="data:image/png;base64,#{homeCates.restCate.image}")
 

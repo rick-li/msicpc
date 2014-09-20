@@ -1,5 +1,55 @@
 
+
+
+
+#sidebar div, #sidebar a, #sidebar p, #sidebar img,  #sidebar textarea, #sidebar input, #sidebar label{
+  display: block;
+
+  position:relative;
+}
+
+.page-content p {
+  line-height: 20px;
+  margin-bottom: 20px;
+  font-size:12px;
+  letter-spacing:0px;
+}
+
+p > a {
+  display: inline;
+  text-decoration: none;
+}
+
+p > a:hover {
+  text-decoration: underline;
+}
+
+p > span {
+  display: inline;
+}
+
+span > a {
+  display: inline;
+}
+
+a > span {
+  display: inline;
+}
+
+.page-content a {
+  text-decoration: none;
+}
+
+.page-content a:hover {
+  text-decoration: none;
+}
+
+h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+  display: inline;
+}
+
 .header-logo {
+  display: block;
   width: auto;
   margin-top: -34px;
 }
@@ -16,19 +66,20 @@
 }
 .search-box input{
   width: 200px;
-  position: absolute;
+  position: absolute !important;
   background: transparent;
   color: #fff;
   padding-left: 15px;
 
 }
 .shortcut-search{
+  position: absolute !important;
   background-position: 23px 11px;
   left: 150px;
   border: none;
 }
 .page-header {
-  position: absolute;
+  position: absolute !important;
   background-color: #fff;
 }
 .page-header, .page-header-clear {
@@ -38,10 +89,16 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+.page-content{
+  position: relative;
+  overflow: hidden;
+}
 .deploy-sidebar {
+  display: block;
   height: 35px;
   background-position: 16px 12px;
 }
+
 .siderbar-shortcuts {
   height: 35px;
 }
@@ -58,7 +115,7 @@
   display: inline-block;
 }
 .sidebar-logo img {
-  display: inline-block;
+  display: inline-block !important;
   top: 21px;
   right: 11px;
 }
@@ -80,11 +137,13 @@
 }
 .image-separator {
   margin: 0 auto;
+  display: block;
 }
 .editor-slider {} .editor-slider .prev-home {
   left: 20px;
 }
 .editor-slider img {
+  display: block;
   width: 50%;
   margin: 0 auto;
 }
@@ -124,6 +183,7 @@
 }
 .home-cate-content-item img {
   margin: 0 auto;
+  display: block;
 }
 .home-cate-tab.second {
   right: 0;
@@ -170,3 +230,13 @@
 .hidden {
   display: none;
 }
+
+
+
+
+
+
+
+
+
+

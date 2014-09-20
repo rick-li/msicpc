@@ -1,6 +1,7 @@
 define(function(require, exports, module) {
 
-  require('jwhtml5');
+  require('video');
+  var player;
 
   var regex = /{(\S+)}(\S+){\S+}/;
 
@@ -29,6 +30,9 @@ define(function(require, exports, module) {
     
 
     $('.item-back-btn').click(function() {
+      if(player){
+        player.dispose();
+      }
       $('.item-container').remove();
       $('.all-elements').show();
     });
@@ -64,13 +68,17 @@ define(function(require, exports, module) {
   }
 
   function playVideo(containerEl, url, image) {
-    
-    var player = jwplayer("item-content").setup({
-      file: url,
-      autostart: true,
-      width: '100%',
-      image: image
-    })
+    var videohtml = '<video id="player" width="100%" height= "300px" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered" poster="'+image+'">'+
+      '<source src="'+url+'" type="video/mp4" />'+
+    '</video>'
+    containerEl.find('.item-content').append($(videohtml));
+    player = videojs('player');
+    // var player = jwplayer("item-content").setup({
+    //   file: url,
+    //   autostart: true,
+    //   width: '100%',
+    //   image: image
+    // })
 
     
   }
