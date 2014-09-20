@@ -19,14 +19,14 @@ define(function(require, exports, module) {
 
     if (type==='文字') {
       playText(containerEl, text, image);
-    } else {
-
-      if (type === '视频') {
+    } else if (type === '视频') {
         playVideo(containerEl, url, image);
       } else if (type === '图片') {
         playImage(containerEl, url);
+      }else if (type === '链接'){
+        window.location = url;
       }
-    }
+    
 
     $('.item-back-btn').click(function() {
       $('.item-container').remove();

@@ -14,9 +14,9 @@ var baseMethods = {
     fields.forEach(function(field) {
       sql.field(field);
     });
-
-    Object.keys(wheres).forEach(function(whereKey) {
-      sql.where(whereKey + '=' + wheres[whereKey]);
+    console.log('wheres', wheres)
+    wheres.forEach(function(whereExpr) {
+      sql.where(whereExpr);
     });
 
     Object.keys(orders).forEach(function(orderKey) {
@@ -45,26 +45,26 @@ var baseMethods = {
     return strSql;
   },
   queryAll: function(cb) {
+    console.log('======queryAll');
     var sql = this.buildSql(this.tableName, this.defaultFields, this.defaultWheres, this.defaultOrder);
     this.execSql(sql, cb);
   },
   queryById: function(id, cb) {
-    var pair = {};
-    pair[this.alias + '.id'] = '?';
-    var wheres = _.extend(pair, this.defaultWheres);
+    console.log('======queryById');
+    var pair = [];
+    pair.push(this.alias + '.id=?');
+    var wheres = _.union(pair, this.defaultWheres);
     var sql = this.buildSql(this.tableName, this.defaultFields, wheres, this.defaultOrder);
     this.execSql(sql, cb, id);
   },
   queryByName: function(name, cb) {
-    var pair = {};
-    pair[this.alias + '.name'] = '?';
-    var wheres = _.extend(pair, this.defaultWheres);
+    console.log('======queryByName');
+    var pair = [];
+    pair.push(this.alias + '.name=?');
+    var wheres = _.union(pair, this.defaultWheres);
     var sql = this.buildSql(this.tableName, this.defaultFields, wheres, this.defaultOrder);
     this.execSql(sql, cb, name);
   },
-
-
-
 
   execSql: function(sql, cb) {
     var args = Array.prototype.slice.call(arguments, 2);
@@ -84,7 +84,7 @@ var baseMethods = {
     }).then(function(args) {
       var res = args[0];
       var conn = args[1];
-
+      // console.log(res)
       var rows = res;
       cb(null, parseParams(rows));
       if (conn) {
@@ -100,9 +100,9 @@ var baseMethods = {
 
 var Categories = function() {
   this.alias = 'c';
-  this.defaultWheres = {};
-  this.defaultWheres[this.alias + '.trash'] = 0;
-  this.defaultWheres[this.alias + '.published'] = 1;
+  this.defaultWheres = [];
+  this.defaultWheres.push(this.alias + '.trash=0');
+  this.defaultWheres.push(this.alias + '.published=1');
 
   this.defaultOrder = {};
   this.defaultOrder[this.alias + '.ordering'] = true;
@@ -115,10 +115,10 @@ _.extend(Categories.prototype, baseMethods);
 //======================= Start Item =================
 var Items = function() {
   this.alias = 'i';
-  this.defaultWheres = {
-    'i.trash': 0,
-    'i.published': 1
-  };
+  this.defaultWheres = [
+    'i.trash=0',
+    'i.published=1'
+  ];
   this.defaultOrder = {
     'i.ordering': true
   };
@@ -129,16 +129,17 @@ var Items = function() {
 _.extend(Items.prototype, baseMethods);
 
 Items.prototype.queryById = function(id, cb) {
-  
-  var pair = {};
-  pair[this.alias + '.id'] = '?';
-  var wheres = _.extend(pair, this.defaultWheres);
+  console.log('======queryById');
+  var pair = [];
+  pair.push(this.alias + '.id=?');
+  var wheres = _.union(pair, this.defaultWheres);
   var sql = this.buildSql(this.tableName, this.defaultFields, wheres, this.defaultOrder);
   this.execSql(sql, cb, id);
 },
 
 //category, start, limit, cb
 Items.prototype.queryByCate = function() {
+  console.log('======queryByCate');
   var args = Array.prototype.slice.call(arguments);
   var cateId = args[0];
   var start = null;
@@ -148,14 +149,32 @@ Items.prototype.queryByCate = function() {
     start = args[2];
     limit = args[3];
   }
-  var wheres = _.extend({
-    'i.catid': 'c.id',
-    'c.id': '?'
-  }, this.defaultWheres);
+
+  var wheres = _.union([
+    'i.catid=c.id',
+    'c.id=?'
+  ], this.defaultWheres);
   var table = this.tableName + ',' + prefix + 'k2_categories as c';
   var sql = this.buildSql(table, this.defaultFields, wheres, this.defaultOrder, [start, limit]);
 
   this.execSql(sql, cb, cateId);
+};
+
+Items.prototype.search = function() {
+  var args = Array.prototype.slice.call(arguments);
+  var keyword = args[0];
+  var start = null;
+  var limit = null;
+  var cb = args[1];
+  if (args.length == 4) {
+    start = args[2];
+    limit = args[3];
+  }
+  var searchExpr = squel.expr().and('i.title like "%'+keyword+'%"').or('i.introtext like "%'+keyword+'%"')
+  var wheres = _.union([searchExpr], this.defaultWheres);
+  var table = this.tableName;
+  var sql = this.buildSql(table, this.defaultFields, wheres, this.defaultOrder, [start, limit]);
+  this.execSql(sql, cb);
 };
 
 Items.prototype.queryLatestCreated = function(cb, start, limit) {
@@ -179,8 +198,8 @@ Items.prototype.queryMostVisited = function(cb, start, limit) {
 //======================= Start Menu =================
 var Menus = function() {
   this.alias = 'm';
-  this.defaultWheres = {};
-  this.defaultWheres[this.alias + '.published'] = 1;
+  this.defaultWheres = [];
+  this.defaultWheres.push(this.alias + '.published=1');
 
   this.defaultOrder = {};
   this.defaultOrder[this.alias + '.ordering'] = true;

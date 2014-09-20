@@ -20,9 +20,11 @@ var addItemsPromise = function(items) {
   return q.all(items.filter(function(item) {
     return !!item;
   }).map(function(item) {
+    console.log(item.id);
     var defer = q.defer();
-    console.log('items promise -> ', item.itemId);
-    itemModel.queryById(item.itemId, function(err, itemDatas) {
+    var itemId = item.id || item.itemId;
+    console.log('items promise -> ', itemId);
+    itemModel.queryById(itemId, function(err, itemDatas) {
       var itemData = itemDatas[0];
 
       if (err) {
@@ -30,7 +32,7 @@ var addItemsPromise = function(items) {
         return;
       }
       if(itemData){
-        item.data = getDataForItem(itemData, item.itemId);  
+        item.data = getDataForItem(itemData, itemId);  
       }
       
       defer.resolve(item);

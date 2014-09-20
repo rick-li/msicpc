@@ -12,12 +12,11 @@
     - each item in items
       .one-half-responsive
         - var data = item.data;
+        
         - if(data)
-        a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
-          .thumb-left.no-bottom
-            //- img(src="http://www.sicpc.com/video/media/k2/items/src/#{item.imageId}.jpg" alt="img" width="100px")
-            strong #{item.title}
-          //- .thumb-clear
+          a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
+            .thumb-left.no-bottom
+              strong #{item.title}
 
       .decoration.hide-if-responsive
 

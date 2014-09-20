@@ -1,7 +1,7 @@
 var AdminCommonService = function($log) {
 
   this.copyCommonMethods = function($scope) {
-    $scope.itemTypes = ['视频', '图片', '文字'];
+    $scope.itemTypes = ['视频', '图片', '文字', '链接'];
 
     $scope.fileChanged = function(finput) {
 

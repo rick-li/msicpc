@@ -7,6 +7,8 @@ define(function(require, exports, module) {
     .parents('.navigation-item').find('.submenu-deploy em').removeClass('dropdown-item')
     .parent().next('.nav-submenu').show();
     
+
+    //carousel
     var owlQuoteControls = $(".quote-slider");
     owlQuoteControls.owlCarousel({
       //Basic Stuff
@@ -99,6 +101,14 @@ define(function(require, exports, module) {
 
     $('.wide-image a').click(function() {
       $(this).parent().parent().find('.wide-active').toggle(100);
+    });
+
+    //init search
+    $('.shortcut-search').click(function() {
+      var q = $('.search-field').val();
+      if(q){
+        window.location = 'search?q='+q;
+      }
     });
 
     //init tabs

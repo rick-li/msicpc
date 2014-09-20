@@ -33,12 +33,33 @@ module.exports.controller = function(app) {
       renderHome(req, res, next);
       return;
     }else{
-      // res.send('hello');
       renderOthers(req, res, next, query);
       // return;
     }
 
 
+  });
+
+  app.get('/search', function(req, res, next) {
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+    var searchTxt = query.q;
+
+    q.all([q.nfcall(itemModel.search.bind(itemModel), searchTxt), getMenus()]).spread(function(items, allMenus) {
+      q.all([ItemCtrl.addItemsPromise(items)]).spread(function(itemsData) {
+        
+        var data = {
+          page: 'search',
+          menus: allMenus,
+          items: itemsData
+      };
+      // res.send(data);
+        res.render('index', data);
+      }).fail(function(err) {
+        res.send(err)
+      });
+      
+    });
   });
 
 
