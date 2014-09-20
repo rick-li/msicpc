@@ -65,9 +65,8 @@ define(function(require, exports, module) {
 
   function playVideo(containerEl, url, image) {
     
-
     var player = jwplayer("item-content").setup({
-      file: "http://www.sicpc.com/video/media/k2/videos/zln/XiaoQinJingLao.mp4",
+      file: url,
       autostart: true,
       width: '100%',
       image: image
