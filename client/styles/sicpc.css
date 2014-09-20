@@ -1,6 +1,14 @@
+.item-content .mejs-inner{
+  position: static;
+}
+
+.item-content *{
+  overflow: auto;
+}
+
 .header-logo {
   width: auto;
-  margin-top: -36px;
+  margin-top: -34px;
 }
 .top-slider-container .prev-home, .top-slider-container .next-home {
   margin-top: -50px;
@@ -10,18 +18,18 @@
   background-color: #fff;
 }
 .page-header, .page-header-clear {
-  height: 40px;
+  height: 35px;
 }
 .page-sidebar {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 .deploy-sidebar {
-  height: 40px;
-  background-position: 16px 14px;
+  height: 35px;
+  background-position: 16px 12px;
 }
 .siderbar-shortcuts {
-  height: 40px;
+  height: 35px;
 }
 .responsive-image {
   margin-bottom: 0;
@@ -94,6 +102,9 @@
 .home-cate-tab.active {
   z-index: 10;
 }
+.home-cate-tab:not(.active) {
+  opacity: 0.5;
+}
 .home-cate-content:not(.active) {
   display: none;
 }
@@ -107,68 +118,41 @@
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 99999;
+  
   width: 100%;
 }
-.item-content, video {
-  width: 100%;
-}
+
 .item-content img {
-  width: 100%;
-  margin: 0 auto;
+  /*width: 100%;*/
+  /*margin: 0 auto;*/
 }
 .item-title{
-  display: inline-block;
+  display: table-cell;
   height: 30px;
-  width: 80%;
   line-height: 30px;
   font-size: 16px;
   text-align: center;
+  word-wrap: break-word;
+  word-break: break-all;
+  vertical-align:  middle;
 }
 .item-content .item-text {
   margin: 5px;
 }
 .item-container .item-header {
+  display: table;
   height: 42px;
-  background: #aff29d;
 }
-.item-back-btn:before {
-  position: absolute;
-  content: " ";
-  border: transparent 14px solid;
-  border-width: 13px 8px;
-  border-right-color: #CCC;
-  top: 1px;
-  left: -16px;
-  height: 0;
-  width: 0;
-}
+
 .item-back-btn {
+  background: url(../images/sicpc/br_prev_icon&24.png) no-repeat 9px 8px;
   display: inline-block;
   position: relative;
   width: 50px;
   height: 35px;
-  background: #EEE;
-  border-radius: 5px;
-  margin: 2px 0 0 11px;
-  text-align: center;
-  line-height: 36px;
-  color: #999;
-  font-size: 19px;
-  border: 1px solid #CCC;
-  
+  line-height: 35px;
 }
-.item-back-btn:after {
-  position: absolute;
-  content: " ";
-  border: transparent 13px solid;
-  border-width: 12px 8px;
-  border-right-color: #EEE;
-  top: 2px;
-  left: -15px;
-  height: 0;
-  width: 0;
-}
+
 .hidden {
   display: none;
 }

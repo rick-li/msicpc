@@ -1,13 +1,17 @@
 define(function(require, exports, module) {
+
+  require('jwhtml5');
+
   var regex = /{(\S+)}(\S+){\S+}/;
 
   window.viewItem = function(title, type, image, text, url) {
+    
     (image === 'undefined') && (image = null);
     (text === 'undefined') && (text = null);
     (url === 'undefined') && (url = null);
     
     $('.all-elements').hide();
-    var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn">返回</div><div class="item-title"></div></div><div class="item-content"></div></div>');
+    var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn"></div><div class="item-title"></div></div><div id="item-content" class="item-content"></div></div>');
     containerEl.appendTo($('body'));
     
     
@@ -18,7 +22,7 @@ define(function(require, exports, module) {
     } else {
 
       if (type === '视频') {
-        playVideo(containerEl, url);
+        playVideo(containerEl, url, image);
       } else if (type === '图片') {
         playImage(containerEl, url);
       }
@@ -59,31 +63,16 @@ define(function(require, exports, module) {
     containerEl.find('.item-content').append(textEl);
   }
 
-  function playVideo(containerEl, url) {
-    containerEl.find();
-    var shtml = '<video id="video"  controls preload autoplay="autoplay" onclick="this.play()"><source src="' + url + '"></source></video>';
-    containerEl.find('.item-content').html(shtml);
-    var video = $('video')[0];
-    video.addEventListener('canplay', function() {
-      // alert('can play');
-      video.play();
-    });
-    video.load();
-    video.play();
+  function playVideo(containerEl, url, image) {
+    
 
-    function onPause() {
+    var player = jwplayer("item-content").setup({
+      file: "http://www.sicpc.com/video/media/k2/videos/zln/XiaoQinJingLao.mp4",
+      autostart: true,
+      width: '100%',
+      image: image
+    })
 
-      if (!video.webkitDisplayingFullscreen) {
-        onEnd();
-      }
-    }
-
-    function onEnd() {
-      $('.item-container').remove();
-      $('.all-elements').show();
-    }
-
-    video.addEventListener('pause', onPause, false);
-    video.addEventListener('ended', onEnd, false);
+    
   }
 });

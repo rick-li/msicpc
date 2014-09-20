@@ -54,6 +54,12 @@ var getDataForItem = function(itemData, itemId) {
       if (/flv$/.test(url)) {
         url = url.replace('.flv', '.mp4');
       }
+      var rImagePath = 'items/cache/'+md5('Image'+itemId)+'_Generic.jpg';
+      console.log(itemId, '===>',rImagePath);
+      var imagePath = rootPath + rImagePath;
+      if(fs.existsSync(imagePath)){
+        data.image = 'http://www.sicpc.com/video/media/k2/'+rImagePath;
+      }
       data.url = 'http://www.sicpc.com/video' + url;
     }
   }else if ( itemData.gallery) {

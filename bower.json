@@ -6,7 +6,9 @@
         "modernizr": "~2.6.2",
         "jquery": "~1.10.2",
         "ng-grid": "latest",
-
+        "mediaelement":"~2.15.1",
+        "videojs": "4.6.3",
+        "jwplayer-mirror": "v6.9.4867",
         "angular-route": "latest",
         "angular-resource": "latest",
         "angular-bootstrap": "latest",
