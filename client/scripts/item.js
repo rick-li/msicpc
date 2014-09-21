@@ -38,6 +38,7 @@ define(function(require, exports, module) {
       if(player){
         try{
           player.dispose();
+          player.stop();
         }catch(e){} 
       }
       $('.item-container').remove();
@@ -83,11 +84,12 @@ define(function(require, exports, module) {
   }
 
   function playAudio(containerEl, url, image) {
-    image = 'http://www.sicpc.com/video/media/k2/items/cache/2e2843e2ade511d88df42c8a44a73c77_Generic.jpg';
+    // image = 'http://www.sicpc.com/video/media/k2/items/cache/2e2843e2ade511d88df42c8a44a73c77_Generic.jpg';
     var audiohtml = '<audio src="'+url+'" controls></audio>';
     if(image){
       audiohtml = '<img src="'+image+'" class="responsive-image"/>' + audiohtml;
     }
     containerEl.find('.item-content').append($(audiohtml));
+    player = $('audio')[0];
   }
 });
