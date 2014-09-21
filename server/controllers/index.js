@@ -18,6 +18,10 @@ var homeCateModel = mongoModels.HomeCates;
 
 
 module.exports.controller = function(app) {
+  app.get('/', function(req, res, next) {
+    res.redirect('index');
+    return;
+  });
   app.get('/index', function(req, res, next) {
 
     var url_parts = url.parse(req.url, true);
