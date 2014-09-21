@@ -21,7 +21,12 @@ define(function(require, exports, module) {
     if (type==='文字') {
       playText(containerEl, text, image);
     } else if (type === '视频') {
-        playVideo(containerEl, url, image);
+        if(/mp3$/.test(url)){
+          playAudio(containerEl, url, image);
+        }else{
+          playVideo(containerEl, url, image);  
+        }
+        
       } else if (type === '图片') {
         playImage(containerEl, url);
       }else if (type === '链接'){
@@ -31,7 +36,9 @@ define(function(require, exports, module) {
 
     $('.item-back-btn').click(function() {
       if(player){
-        player.dispose();
+        try{
+          player.dispose();
+        }catch(e){} 
       }
       $('.item-container').remove();
       $('.all-elements').show();
@@ -62,7 +69,7 @@ define(function(require, exports, module) {
       var imageEl = $('<img src="' + image + '"/>');
       containerEl.find('.item-content').append(imageEl);
     }
-    text = $('<div>').html(text).text();
+    // text = $('<div>').html(text).text();
     var textEl = $('<div class="item-text">' + text + '</div>');
     containerEl.find('.item-content').append(textEl);
   }
@@ -73,13 +80,14 @@ define(function(require, exports, module) {
     '</video>'
     containerEl.find('.item-content').append($(videohtml));
     player = videojs('player');
-    // var player = jwplayer("item-content").setup({
-    //   file: url,
-    //   autostart: true,
-    //   width: '100%',
-    //   image: image
-    // })
+  }
 
-    
+  function playAudio(containerEl, url, image) {
+    image = 'http://www.sicpc.com/video/media/k2/items/cache/2e2843e2ade511d88df42c8a44a73c77_Generic.jpg';
+    var audiohtml = '<audio src="'+url+'" controls></audio>';
+    if(image){
+      audiohtml = '<img src="'+image+'" class="responsive-image"/>' + audiohtml;
+    }
+    containerEl.find('.item-content').append($(audiohtml));
   }
 });

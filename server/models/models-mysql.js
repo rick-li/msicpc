@@ -120,7 +120,7 @@ var Items = function() {
     'i.published=1'
   ];
   this.defaultOrder = {
-    'i.ordering': true
+    'i.created': false
   };
 
   this.defaultFields = [this.alias + '.id', this.alias + '.title', this.alias + '.params', this.alias + '.gallery', this.alias + '.video', this.alias + '.introtext'];
