@@ -1,12 +1,32 @@
 define(function(require, exports, module) {
 
   require('video');
+  var goback = function() {
+    if(player){
+        try{
+          player.dispose();
+          player.stop();
+        }catch(e){} 
+    }
+    $('.item-container').remove();
+    $('.all-elements').show();
+  };
+  $(window).on('hashchange', function(e) {
+    if(!window.location.hash){
+      goback();
+    }
+  });
+  
   var player;
 
   var regex = /{(\S+)}(\S+){\S+}/;
 
   window.viewItem = function(title, type, image, text, url) {
-    
+    if (type === '链接'){
+      window.location = url;
+      return;
+    }
+    window.location.hash = 'item';
     (image === 'undefined') && (image = null);
     (text === 'undefined') && (text = null);
     (url === 'undefined') && (url = null);
@@ -29,20 +49,11 @@ define(function(require, exports, module) {
         
       } else if (type === '图片') {
         playImage(containerEl, url);
-      }else if (type === '链接'){
-        window.location = url;
       }
     
 
     $('.item-back-btn').click(function() {
-      if(player){
-        try{
-          player.dispose();
-          player.stop();
-        }catch(e){} 
-      }
-      $('.item-container').remove();
-      $('.all-elements').show();
+      history.back();
     });
   };
 
@@ -63,6 +74,8 @@ define(function(require, exports, module) {
       pagination: false,
       startDragging: false
     });
+
+    $('.item-image-slider img').panzoom({disablePan: true, minScale: 1});
   }
 
   function playText(containerEl, text, image) {

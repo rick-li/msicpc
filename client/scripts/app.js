@@ -1,5 +1,6 @@
 define(function(require, exports, module) {
   var item = require('item');
+  require('zoom');
   $(document).ready(function() {
 
     //select menu item

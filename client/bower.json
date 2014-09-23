@@ -18,9 +18,8 @@
     "jquery": "~2.1.0",
     "snapjs": "latest",
     "OwlCarousel": "~1.3.2",
-    "mediaelement":"~2.15.1",
     "videojs": "4.6.3",
-    "jwplayer-mirror": "v6.9.4867"
+    "jquery.panzoom": "~2.0.5"
   }
 
 }
