@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var q = require('q');
-var md5 = require('md5');
 var fs = require('fs');
 
 exports.addCommonMethods = function(app, url, Items) {
