@@ -2,11 +2,14 @@ define(function(require, exports, module) {
 
   require('video');
   var goback = function() {
-    if(player){
+    if(splayer){
         try{
-          player.dispose();
-          player.stop();
+          splayer.dispose();
         }catch(e){} 
+
+        try{
+          splayer.pause();
+        }catch(e){}
     }
     $('.item-container').remove();
     $('.all-elements').show();
@@ -17,7 +20,7 @@ define(function(require, exports, module) {
     }
   });
   
-  var player;
+  var splayer;
 
   var regex = /{(\S+)}(\S+){\S+}/;
 
@@ -89,11 +92,11 @@ define(function(require, exports, module) {
   }
 
   function playVideo(containerEl, url, image) {
-    var videohtml = '<video id="player" width="100%" height= "300px" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered" poster="'+image+'">'+
+    var videohtml = '<video id="splayer" width="100%" height= "300px" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered" poster="'+image+'">'+
       '<source src="'+url+'" type="video/mp4" />'+
     '</video>'
     containerEl.find('.item-content').append($(videohtml));
-    player = videojs('player');
+    splayer = videojs('splayer');
   }
 
   function playAudio(containerEl, url, image) {
@@ -103,6 +106,6 @@ define(function(require, exports, module) {
       audiohtml = '<img src="'+image+'" class="responsive-image"/>' + audiohtml;
     }
     containerEl.find('.item-content').append($(audiohtml));
-    player = $('audio')[0];
+    splayer = $('audio')[0];
   }
 });
