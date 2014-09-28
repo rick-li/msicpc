@@ -43,7 +43,8 @@ var HomeCatesSchema = new Schema({
   name: String,
   order: Number,
   categories: {type: [{id: String, name: String}], default: []},
-  image: {type: String, default: ''}
+  image: {type: String, default: ''},
+  moreUrl: String,
 });
 var HomeCates = mongoose.model('HomeCates', HomeCatesSchema);
 exports.HomeCates = HomeCates;

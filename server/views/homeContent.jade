@@ -62,6 +62,10 @@
                     - var data = item.data;
                       a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
                         img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
+            .home-cate-more-wrap
+              a(href="#{first.moreUrl}")
+                更多
+
           .home-cate-content(data-homeCateId="#{second.id}")
             - each category in second.data
               - for(var j=0;j<3;j++)
@@ -71,6 +75,9 @@
                     - var data = item.data;
                       a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
                         img(src="http://www.sicpc.com/video/media/k2/items/cache/#{item.imageId}_Generic.jpg")
+            .home-cate-more-wrap
+              a(href="#{second.moreUrl}")
+                更多
 
   - if(homeCates.restCate)
     .home-categories-container
