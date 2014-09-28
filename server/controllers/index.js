@@ -22,15 +22,15 @@ module.exports.controller = function(app) {
     res.redirect('index');
     return;
   });
-  app.get('/index', function(req, res, next) {
+  
 
+  var handleIndex = function(req, res, next) {
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
 
     //home page
     if (!query.page) {
-      res.redirect('index?page=首页');
-      return;
+      query.page = '首页'
     }
 
     if (query.page === '首页') {
@@ -40,9 +40,10 @@ module.exports.controller = function(app) {
       renderOthers(req, res, next, query);
       // return;
     }
-
-
-  });
+  };
+  
+  app.get('/home', handleIndex);
+  app.get('/index', handleIndex);
 
   app.get('/search', function(req, res, next) {
     var url_parts = url.parse(req.url, true);
