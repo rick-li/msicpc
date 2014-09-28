@@ -13,7 +13,7 @@
         - each item in topItems
           - if(item)
           a(href="javascript:viewItem('#{item.name}', '#{item.itemType}', '#{item.image}', '#{item.text}', '#{item.url}')")
-            img(src="http://localhost:3000/video/media/k2/#{item.imageName}", class="responsive-image", alt="#{item.text}")
+            img(src="http://www.sicpc.com/video/media/k2/#{item.imageName}", class="responsive-image", alt="#{item.text}")
     .homepage-slider-controls
       a.next-home(href="#")
       a.prev-home(href="#")
@@ -31,7 +31,7 @@
             - var data = item.data;
             - if(data)
               a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
-                img(src="http://localhost:3000/video/media/k2/#{item.imageName}", class="responsive-image",  alt="#{item.text}")
+                img(src="http://www.sicpc.com/video/media/k2/#{item.imageName}", class="responsive-image",  alt="#{item.text}")
                 .editor-caption-wrap
                   p.caption-content.
                     #{item.desc}
