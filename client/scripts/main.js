@@ -11,7 +11,7 @@ require.config({
   shim: {
     'owl': ['jquery'],
     'snapjs': ['jquery'],
-    'app': ['snapjs', 'owl']
+    'app': ['snapjs', 'owl', 'domReady']
   },
   deps: ['bootstrap']
 });

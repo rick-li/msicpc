@@ -1,8 +1,10 @@
 define(function(require, exports, module) {
   var item = require('item');
   require('zoom');
+  var domReady = require('domReady');
   module.exports = function() {
-    //select menu item
+    domReady(function() {
+       //select menu item
     $('.nav-item:contains('+currentPage+')').find('em').removeClass('unselected-item').addClass('selected-item')
     .parents('.navigation-item').find('.submenu-deploy em').removeClass('dropdown-item')
     .parent().next('.nav-submenu').show();
@@ -121,5 +123,7 @@ define(function(require, exports, module) {
       e.preventDefault();
       return false;
     });
+    });
+   
   };
 });
