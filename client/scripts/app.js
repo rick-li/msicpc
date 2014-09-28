@@ -1,13 +1,11 @@
 define(function(require, exports, module) {
   var item = require('item');
   require('zoom');
-  $(document).ready(function() {
-
+  module.exports = function() {
     //select menu item
     $('.nav-item:contains('+currentPage+')').find('em').removeClass('unselected-item').addClass('selected-item')
     .parents('.navigation-item').find('.submenu-deploy em').removeClass('dropdown-item')
     .parent().next('.nav-submenu').show();
-    
 
     //carousel
     var owlQuoteControls = $(".quote-slider");
@@ -123,5 +121,5 @@ define(function(require, exports, module) {
       e.preventDefault();
       return false;
     });
-  });
+  };
 });

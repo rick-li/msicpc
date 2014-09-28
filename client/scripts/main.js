@@ -1,17 +1,18 @@
 require.config({
-  base_url: 'app/scripts',
+  base_url: 'client/scripts',
   paths: {
     'jquery': '../bower_components/jquery/dist/jquery.min',
     'snapjs': '../bower_components/snapjs/snap.min',
     'owl': '../bower_components/OwlCarousel/owl-carousel/owl.carousel.min',
     'video': '../bower_components/videojs/dist/video-js/video',
-    'zoom': '../bower_components/jquery.panzoom/dist/jquery.panzoom.min'
+    'zoom': '../bower_components/jquery.panzoom/dist/jquery.panzoom.min',
+    'domReady': '../bower_components/domReady/domReady'
   },
   shim: {
     'owl': ['jquery'],
     'snapjs': ['jquery'],
     'app': ['snapjs', 'owl']
-  }
+  },
+  deps: ['bootstrap']
 });
 
-require(['app']);

@@ -32,6 +32,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use('/admin', express.static(path.join(__dirname, '../', 'admin')));
 app.use('/client', express.static(path.join(__dirname, '../', 'client')));
+app.use('/video/media/k2', express.static(path.join(__dirname, '../../', 'data')));
 
 // development only
 if ('development' == app.get('env')) {

@@ -16,6 +16,8 @@
   ],
   "dependencies": {
     "jquery": "~2.1.0",
+    "almond": "~0.3.0",
+    "domReady": "latest",
     "snapjs": "latest",
     "OwlCarousel": "~1.3.2",
     "videojs": "4.6.3",

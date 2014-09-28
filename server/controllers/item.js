@@ -5,12 +5,7 @@ var md5 = require('MD5');
 var mysqlModels = require('../models/models-mysql.js');
 
 
-var rootPath = '/home/sicpc/wwwroot/video/media/k2/';
-require('dns').lookup(require('os').hostname(), function(err, add) {
-  if (/^192\.168/.test(add)) {
-    rootPath = '/Users/rickli/Documents/apps/sicpc/data/';
-  }
-});
+var rootPath = require('../imagePath.js').getImagePath();
 var contentRe = /{.+}(.+){.+}/;
 
 var itemModel = new mysqlModels.Items();

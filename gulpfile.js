@@ -5,6 +5,8 @@ var gulp = require('gulp');
 
 var wiredep = require('wiredep').stream;
 
+var rjs = require('requirejs');
+
 // Load plugins
 var $ = require('gulp-load-plugins')();
 
@@ -29,6 +31,17 @@ gulp.task('scripts', function() {
     .pipe($.size());
 });
 
+gulp.task('rjs', function() {
+  rjs.optimize({
+    baseUrl:'client/scripts',
+    // appDir: 'client/scripts',
+    mainConfigFile: 'client/scripts/main.js',
+    out: "client/scripts/dist.js",
+    optimize: "uglify",
+    include: ['../bower_components/almond/almond.js']
+  });
+});
+
 // HTML
 // gulp.task('html', function() {
 //   return gulp.src('app/*.html')
@@ -39,7 +52,7 @@ gulp.task('scripts', function() {
 
 // Images
 gulp.task('images', function() {
-  return gulp.src('app/images/**/*')
+  return gulp.src('client/images/**/*')
     .pipe($.cache($.imagemin({
       optimizationLevel: 3,
       progressive: true,
@@ -57,10 +70,10 @@ gulp.task('clean', function() {
 });
 
 // Bundle
-gulp.task('bundle', ['styles', 'scripts'], $.bundle('./app/*.html'));
+// gulp.task('bundle', ['styles', 'scripts'], $.bundle('./app/*.html'));
 
 // Build
-gulp.task('build', ['html', 'bundle', 'images']);
+// gulp.task('build', ['html', 'bundle', 'images']);
 
 // Default task
 gulp.task('default', ['clean'], function() {

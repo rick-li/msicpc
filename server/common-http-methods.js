@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var q = require('q');
+var md5 = require('md5');
+var fs = require('fs');
 
 exports.addCommonMethods = function(app, url, Items) {
   var handleError = function(err) {
@@ -28,9 +30,23 @@ exports.addCommonMethods = function(app, url, Items) {
     });
   });
 
+
+  
   app.post(url, function(req, res, next) {
     var data = req.body;
+    var re = /^data:image\/(\w+);base64,/;
+    var match = data.image.match(re);
+    var ext = match.length>1 && data.image.match(re)[1];
+    var imageBase64 = data.image.replace(re, '');
+    var dataBuffer = new Buffer(imageBase64, 'base64');
     var id = data._id ? data._id : new mongoose.Types.ObjectId;
+    var imageRootPath = require('./imagePath.js').getImagePath()
+    var imagePath = imageRootPath+id+'.'+ext;
+    data.imageName = id+'.'+ext;
+
+    console.log('====>', imagePath);
+    fs.writeFileSync(imagePath, dataBuffer);
+
     delete data.__v; //https://github.com/LearnBoost/mongoose/issues/1933
     delete data._id;
     q.nfcall(Items.count.bind(Items)).then(function(count) {

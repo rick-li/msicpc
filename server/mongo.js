@@ -8,6 +8,7 @@ switch (env) {
     break;
   default:
     connStr = 'mongodb://www.sicpc.com:27017/msicpc';
+    // connStr = 'mongodb://localhost:27017/msicpc';
     break;
 }
 mongoose.connect(connStr, function(err) {

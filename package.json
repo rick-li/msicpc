@@ -28,7 +28,8 @@
     "gulp-useref": "~0.1.2",
     "gulp-bundle": "~0.2.0",
     "wiredep": "~1.1.0",
-    "chai": "*"
+    "chai": "*",
+    "requirejs": "~2.1.15"
   },
   "engines": {
     "node": ">=0.10.0"

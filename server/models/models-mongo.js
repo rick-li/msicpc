@@ -21,7 +21,7 @@ var TopItemsSchema = new Schema({
   itemType: String,
   url: String,
   order: Number,
-  image: {type: String, default: ''}
+  imageName: {type: String, default: ''}
 });
 var TopItems = mongoose.model('TopItems', TopItemsSchema);
 exports.TopItems = TopItems;
@@ -34,7 +34,7 @@ var EditorItemsSchema = new Schema({
   desc: String,
   itemId: String,
   order: Number,
-  image: {type: String, default: ''}
+  imageName: {type: String, default: ''}
 });
 var EditorItems = mongoose.model('EditorItems', EditorItemsSchema);
 exports.EditorItems = EditorItems;
