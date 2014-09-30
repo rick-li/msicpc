@@ -5,20 +5,22 @@ var md5 = require('MD5');
 var mysqlModels = require('../models/models-mysql.js');
 
 
-var rootPath = require('../imagePath.js').getImagePath();
 var contentRe = /{.+}(.+){.+}/;
 
 var itemModel = new mysqlModels.Items();
 
 var addItemsPromise = function(items) {
+  var rootPath = require('../imagePath.js').getImagePath();
+
   var contentRe = /{.+}(.+){.+}/;
   return q.all(items.filter(function(item) {
     return !!item;
   }).map(function(item) {
-    console.log(item.id);
+    
     var defer = q.defer();
-    var itemId = item.id || item.itemId;
+    var itemId = item.itemId || item.id ;
     console.log('items promise -> ', itemId);
+
     itemModel.queryById(itemId, function(err, itemDatas) {
       var itemData = itemDatas[0];
 
@@ -39,6 +41,7 @@ var addItemsPromise = function(items) {
 };
 
 var getDataForItem = function(itemData, itemId) {
+  var rootPath = require('../imagePath.js').getImagePath();
   var data = {};
   if(!itemData){
     return data;

@@ -26,9 +26,9 @@
     .homepage-slider(data-snap-ignore="true")
       - if (editors)
         - each item in editors
-          
           div
             - var data = item.data;
+            //- - console.log(item);
             - if(data)
               a(href="javascript:viewItem('#{data.title}', '#{data.type}', '#{data.image}', '#{data.text}', '#{data.url}')")
                 img(src="http://www.sicpc.com/video/media/k2/#{item.imageName}", class="responsive-image",  alt="#{item.text}")

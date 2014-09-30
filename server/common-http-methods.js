@@ -33,18 +33,20 @@ exports.addCommonMethods = function(app, url, Items) {
   
   app.post(url, function(req, res, next) {
     var data = req.body;
-    var re = /^data:image\/(\w+);base64,/;
-    var match = data.image.match(re);
-    var ext = match.length>1 && data.image.match(re)[1];
-    var imageBase64 = data.image.replace(re, '');
-    var dataBuffer = new Buffer(imageBase64, 'base64');
+    var match, ext, imageBase64, dataBuffer, imagePath;
     var id = data._id ? data._id : new mongoose.Types.ObjectId;
     var imageRootPath = require('./imagePath.js').getImagePath()
-    var imagePath = imageRootPath+id+'.'+ext;
-    data.imageName = id+'.'+ext;
-
-    console.log('====>', imagePath);
-    fs.writeFileSync(imagePath, dataBuffer);
+    var re = /^data:image\/(\w+);base64,/;
+    if(data.image){
+      match = data.image.match(re);
+      ext = match.length>1 && data.image.match(re)[1];
+      imageBase64 = data.image.replace(re, '');
+      dataBuffer = new Buffer(imageBase64, 'base64');
+      data.imageName = id+'.'+ext;
+      imagePath = imageRootPath+id+'.'+ext;
+      console.log('====>', imagePath);
+      fs.writeFileSync(imagePath, dataBuffer);
+    }
 
     delete data.__v; //https://github.com/LearnBoost/mongoose/issues/1933
     delete data._id;

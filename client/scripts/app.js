@@ -1,6 +1,5 @@
 define(function(require, exports, module) {
   var item = require('item');
-  require('zoom');
   var domReady = require('domReady');
   module.exports = function() {
     domReady(function() {

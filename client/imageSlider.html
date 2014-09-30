@@ -1,5 +1,56 @@
-define(function(require, exports, module) {
-  (function (global) {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="bower_components/hammer-touchemulator/touch-emulator.js"></script>
+  <script>
+  TouchEmulator()
+  </script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/hammerjs/hammer.min.js"></script>
+  <style>
+  body,
+  div {
+    margin: 0;
+    padding: 0;
+  }
+
+  
+  .slider-wrap:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+  .slider-container {
+    overflow: hidden;
+  }
+  .slider-wrap .box {
+    float: left;
+  }
+  .animate {
+    -webkit-transition: all .3s;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="slider-container">
+    <div class="slider-wrap">
+      
+      <img class="box" src="http://www.sicpc.com/video/media/k2/galleries/296/1.jpg" alt="">
+      <img class="box" src="http://www.sicpc.com/video/media/k2/galleries/296/10.jpg" alt="">
+      <img class="box" src="http://www.sicpc.com/video/media/k2/galleries/296/11.jpg" alt="">
+    </div>
+
+  </div>
+
+  <script>
+(function (global) {
     var callbacksQueue = [];
 
     global.setInterval(function () {
@@ -20,113 +71,15 @@ define(function(require, exports, module) {
         callbacksQueue[id] = false;
     }
 }(window));
-  require('video');
-  var Hammer = require('hammer');
-  var goback = function() {
-    if (splayer) {
-      try {
-        splayer.dispose();
-      } catch (e) {}
-
-      try {
-        splayer.pause();
-      } catch (e) {}
-    }
-    $('.item-container').remove();
-    $('.all-elements').show();
-  };
-  $(window).on('hashchange', function(e) {
-    if (!window.location.hash) {
-      goback();
-    }
-  });
-
-  var splayer;
-
-  var regex = /{(\S+)}(\S+){\S+}/;
-
-  window.viewItem = function(title, type, image, text, url) {
-    if (type === '链接') {
-      window.location = url;
-      return;
-    }
-    window.location.hash = 'item';
-    (image === 'undefined') && (image = null);
-    (text === 'undefined') && (text = null);
-    (url === 'undefined') && (url = null);
-
-    $('.all-elements').hide();
-    var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn"></div><div class="item-title"></div></div><div id="item-content" class="item-content"></div></div>');
-    containerEl.appendTo($('body'));
-
-
-    containerEl.find('.item-title').text(title);
-
-    if (type === '文字') {
-      playText(containerEl, text, image);
-    } else if (type === '视频') {
-      if (/mp3$/.test(url)) {
-        playAudio(containerEl, url, image);
-      } else {
-        playVideo(containerEl, url, image);
-      }
-
-    } else if (type === '图片') {
-      playImage(containerEl, url);
-    }
-
-
-    $('.item-back-btn').click(function() {
-      history.back();
-    });
-  };
-
-  function playImage(containerEl, url) {
-    var images = url.split(',');
-    var shtml = '<div class="sicpc-slider-container"><div class="sicpc-slider-wrap">';
-
-    shtml += images.map(function(url) {
-      return '<img src="' + url + '" alt="" class="box">';
-    }).join('');
-    shtml += '</div></div>'
-    
-    containerEl.find('.item-content').html(shtml);
+  var baseUrl = 'http://www.sicpc.com/video/media/k2/galleries/296/';
+  var images = ['1.jpg', '10.jpg', '11.jpg'];
+  $(function() {
     var imgW = $(window).width();
-    $('.sicpc-slider-wrap img').width(imgW);
-    $('.sicpc-slider-wrap').width(imgW * $('.sicpc-slider-wrap img').length);
-    addImageBrowser($('.sicpc-slider-wrap')[0], $('.sicpc-slider-container'));
-    
 
-  }
-
-  function playText(containerEl, text, image) {
-    if (image) {
-      var imageEl = $('<img src="' + image + '"/>');
-      containerEl.find('.item-content').append(imageEl);
-    }
-    // text = $('<div>').html(text).text();
-    var textEl = $('<div class="item-text">' + text + '</div>');
-    containerEl.find('.item-content').append(textEl);
-  }
-
-  function playVideo(containerEl, url, image) {
-    var videohtml = '<video id="splayer" width="100%" height= "300px" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered" poster="' + image + '">' +
-      '<source src="' + url + '" type="video/mp4" />' +
-      '</video>'
-    containerEl.find('.item-content').append($(videohtml));
-    splayer = videojs('splayer');
-  }
-
-  function playAudio(containerEl, url, image) {
-    // image = 'http://www.sicpc.com/video/media/k2/items/cache/2e2843e2ade511d88df42c8a44a73c77_Generic.jpg';
-    var audiohtml = '<audio src="' + url + '" controls></audio>';
-    if (image) {
-      audiohtml = '<img src="' + image + '" class="responsive-image"/>' + audiohtml;
-    }
-    containerEl.find('.item-content').append($(audiohtml));
-    splayer = $('audio')[0];
-  }
-
+    $('.slider-wrap img').width(imgW);
+    $('.slider-wrap').width(imgW * $('.slider-wrap img').length);
+    addImageBrowser($('.slider-wrap')[0], $('body')[0]);
+  });
 
   function addImageBrowser(targetEl, constraintEl) {
     var $currentEl = $(targetEl).find(':first');
@@ -334,7 +287,19 @@ define(function(require, exports, module) {
       }
     };
 
-
+    var handlePan = function($el, $parent) {
+      var handleZoomPanFn = handleZoomPan($el, $parent);
+      var handleCarouselFn = handleCarousel($el);
+      return function(e) {
+        console.log(e);
+        var transform = $el.data('transform');
+        if (transform && transform.scale) {
+          handleZoomPanFn(e);
+        } else {
+          handleCarouselFn(e);
+        }
+      };
+    };
 
     new Hammer(targetEl,{
         dragBlockHorizontal: true,
@@ -414,7 +379,9 @@ define(function(require, exports, module) {
         }
         locked = false;
       });
-    }
+    };
   }
- 
-});
+  </script>
+</body>
+
+</html>

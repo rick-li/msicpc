@@ -106,6 +106,7 @@ module.exports.controller = function(app) {
     }).exec()])
       .spread(function(menus, editors, topItems, homeCates) {
         var defer = q.defer();
+        console.log("====> editors: ", editors);
         q.all([ItemCtrl.addItemsPromise(editors)]).spread(function(editorsData) {
           defer.resolve([menus, editorsData, topItems, homeCates]);
         }).fail(function(e) {

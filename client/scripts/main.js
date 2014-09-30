@@ -5,7 +5,7 @@ require.config({
     'snapjs': '../bower_components/snapjs/snap.min',
     'owl': '../bower_components/OwlCarousel/owl-carousel/owl.carousel.min',
     'video': '../bower_components/videojs/dist/video-js/video',
-    'zoom': '../bower_components/jquery.panzoom/dist/jquery.panzoom.min',
+    'hammer': '../bower_components/hammerjs/hammer',
     'domReady': '../bower_components/domReady/domReady'
   },
   shim: {

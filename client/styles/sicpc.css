@@ -1,54 +1,42 @@
-.all-elements{
+.all-elements {
   background: #fff;
 }
-
-#sidebar div, #sidebar a, #sidebar p, #sidebar img,  #sidebar textarea, #sidebar input, #sidebar label{
+#sidebar div, #sidebar a, #sidebar p, #sidebar img, #sidebar textarea, #sidebar input, #sidebar label {
   display: block;
-
-  position:relative;
+  position: relative;
 }
-
 .page-content p {
   line-height: 20px;
   margin-bottom: 20px;
-  font-size:12px;
-  letter-spacing:0px;
+  font-size: 12px;
+  letter-spacing: 0px;
 }
-
 p > a {
   display: inline;
   text-decoration: none;
 }
-
 p > a:hover {
   text-decoration: underline;
 }
-
 p > span {
   display: inline;
 }
-
 span > a {
   display: inline;
 }
-
 a > span {
   display: inline;
 }
-
 .page-content a {
   position: relative;
   text-decoration: none;
 }
-
 .page-content a:hover {
   text-decoration: none;
 }
-
 h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   display: inline;
 }
-
 .header-logo {
   display: block;
   width: auto;
@@ -57,23 +45,21 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 .top-slider-container .prev-home, .top-slider-container .next-home {
   margin-top: -50px;
 }
-
-.sidebar-search{
+.sidebar-search {
   display: block;
   background: transparent;
 }
 .search-box {
   height: 50px;
 }
-.search-box input{
+.search-box input {
   width: 200px;
   position: absolute !important;
   background: transparent;
   color: #fff;
   padding-left: 15px;
-
 }
-.shortcut-search{
+.shortcut-search {
   position: absolute !important;
   background-position: 23px 11px;
   left: 150px;
@@ -90,7 +76,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-.page-content{
+.page-content {
   position: relative;
   overflow: hidden;
   min-height: 580px;
@@ -100,7 +86,6 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   height: 35px;
   background-position: 16px 12px;
 }
-
 .siderbar-shortcuts {
   height: 35px;
 }
@@ -127,7 +112,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 .unselected-item {
   color: rgba(255, 255, 255, 1.1);
 }
-#sidebar .nav-submenu{
+#sidebar .nav-submenu {
   display: none;
 }
 .nav-submenu a {
@@ -193,31 +178,27 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 .home-cate-tab.second {
   right: 0;
 }
-.home-cate-more-wrap{
+.home-cate-more-wrap {
   position: relative;
   height: 25px;
 }
-.home-cate-more-wrap a{
+.home-cate-more-wrap a {
   position: absolute;
   right: 25px;
   color: #666;
   font-size: 15px;
 }
-
-
 .item-container {
   position: absolute;
   left: 0;
   top: 0;
-  
   width: 100%;
 }
-
 .item-content img {
   width: 100%;
   margin: 0 auto;
 }
-.item-title{
+.item-title {
   display: table-cell;
   height: 30px;
   line-height: 30px;
@@ -225,7 +206,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   text-align: center;
   word-wrap: break-word;
   word-break: break-all;
-  vertical-align:  middle;
+  vertical-align: middle;
 }
 .item-content .item-text {
   margin: 5px;
@@ -234,7 +215,6 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   display: table;
   height: 42px;
 }
-
 .item-back-btn {
   background: url(../images/sicpc/br_prev_icon&24.png) no-repeat 9px 8px;
   display: inline-block;
@@ -243,10 +223,25 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   height: 35px;
   line-height: 35px;
 }
-
-.item-container audio{
+.item-container audio {
   width: 100%;
 }
 .hidden {
   display: none;
+}
+.sicpc-slider-wrap:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+.sicpc-slider-container {
+  overflow: hidden;
+}
+.sicpc-slider-wrap .box {
+  float: left;
+}
+.animate {
+  -webkit-transition: all .3s;
 }
