@@ -243,11 +243,11 @@ define(function(require, exports, module) {
           direction = e.deltaX < 0 ? true : false; //true next, false prev
           var dx = e.deltaX;
           var totalx = initTranslate.x + dx;
-          console.log('handleCarousel', totalx);
+          console.log('handleCarousel '+ totalx);
           
           if (Math.abs(dx) < thresold) {
             //just translate the position
-            console.log('dx: ', dx);
+            console.log('dx: '+ dx);
             updateTransform($wrap, {
               x: totalx,
               y: 0
@@ -287,19 +287,19 @@ define(function(require, exports, module) {
         var h = rect.height;
         //assume is minimium scale is 1, both w,h  >  pw, ph
         if (deltaPos.left > 0) {
-          deltaPos.left + totalDeltaPos.left > pLeftTopPos.left && (deltaPos.left = pLeftTopPos.left - initPos.left);
+          initPos.left + totalDeltaPos.left > pLeftTopPos.left && (deltaPos.left = pLeftTopPos.left - initPos.left);
         }
 
         if (deltaPos.left < 0) {
-          deltaPos.left + totalDeltaPos.left + w < pRightBottomPos.left && (deltaPos.left = pRightBottomPos.left - w - initPos.left);
+          initPos.left + totalDeltaPos.left + w < pRightBottomPos.left && (deltaPos.left = pRightBottomPos.left - w - initPos.left);
         }
 
         if (deltaPos.top > 0) {
-          (totalDeltaPos.top + totalDeltaPos.top) > pLeftTopPos.top && (deltaPos.top = pLeftTopPos.top - initPos.top);
+          initPos.top + totalDeltaPos.top > pLeftTopPos.top && (deltaPos.top = pLeftTopPos.top - initPos.top);
         }
 
         if (deltaPos.top < 0) {
-          (totalDeltaPos.top + totalDeltaPos.top + h < pRightBottomPos.top) && (deltaPos.top = pRightBottomPos.top - h - initPos.top);
+          initPos.top + totalDeltaPos.top + h < pRightBottomPos.top && (deltaPos.top = pRightBottomPos.top - h - initPos.top);
         }
         console.log('deltaPos ', deltaPos);
         return {

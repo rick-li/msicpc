@@ -135,7 +135,26 @@ Items.prototype.queryById = function(id, cb) {
   var wheres = _.union(pair, this.defaultWheres);
   var sql = this.buildSql(this.tableName, this.defaultFields, wheres, this.defaultOrder);
   this.execSql(sql, cb, id);
-},
+};
+
+Items.prototype.queryByCateCount = function(cateId, cb) {
+  console.log('======queryByCate count');
+  var wheres = _.union([
+    'i.catid=c.id',
+    'c.id=?'
+  ], this.defaultWheres);
+  var table = this.tableName + ',' + prefix + 'k2_categories as c';
+  var sql = squel.select().from(table);
+    sql.field('COUNT(i.id) as count');
+    console.log('wheres', wheres)
+    wheres.forEach(function(whereExpr) {
+      sql.where(whereExpr);
+    });
+
+    var strSql = sql.toString();
+    console.log('sql is ', strSql);
+    this.execSql(strSql, cb, cateId);
+};
 
 //category, start, limit, cb
 Items.prototype.queryByCate = function() {
@@ -175,6 +194,25 @@ Items.prototype.search = function() {
   var table = this.tableName;
   var sql = this.buildSql(table, this.defaultFields, wheres, this.defaultOrder, [start, limit]);
   this.execSql(sql, cb);
+};
+
+
+Items.prototype.searchCount = function(q, cb) {
+  var args = Array.prototype.slice.call(arguments);
+  var keyword = q;
+  
+  var searchExpr = squel.expr().and('i.title like "%'+keyword+'%"').or('i.introtext like "%'+keyword+'%"')
+  var wheres = _.union([searchExpr], this.defaultWheres);
+  var table = this.tableName;
+  var sql = squel.select().from(table);
+    sql.field('COUNT(i.id) as count');
+    console.log('wheres', wheres)
+    wheres.forEach(function(whereExpr) {
+      sql.where(whereExpr);
+    });
+    var strSql = sql.toString();
+    console.log('sql is ', strSql);
+  this.execSql(strSql, cb);
 };
 
 Items.prototype.queryLatestCreated = function(cb, start, limit) {

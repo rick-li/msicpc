@@ -51,25 +51,12 @@
 
   <script>
 (function (global) {
-    var callbacksQueue = [];
-
-    global.setInterval(function () {
-        for (var i = 0; i < callbacksQueue.length; i++) {
-            if (callbacksQueue[i] !== false) {
-                callbacksQueue[i].call(null);
-            }
-        }
-
-        callbacksQueue = [];
-    }, 1000 / 60);
 
     global.requestAnimationFrame = function (callback) {
-        return callbacksQueue.push(callback) - 1;
+        return window.setTimeout(callback, 1000 / 60);
     }
 
-    global.cancelAnimationFrame = function (id) {
-        callbacksQueue[id] = false;
-    }
+    
 }(window));
   var baseUrl = 'http://www.sicpc.com/video/media/k2/galleries/296/';
   var images = ['1.jpg', '10.jpg', '11.jpg'];
@@ -134,7 +121,8 @@
 
     var handleCarousel = function($wrap) {
       var currIdx, w, initTranslate, direction, num = $wrap.find('.box').length;
-      currIdx = 1;
+      currIdx = 1,
+      prevDx = 0;
       w = $('.box:first', $wrap).outerWidth();
       var reset = function() {
         $wrap.addClass('animate');
@@ -196,17 +184,19 @@
           direction = e.deltaX < 0 ? true : false; //true next, false prev
           var dx = e.deltaX;
           var totalx = initTranslate.x + dx;
-          console.log('handleCarousel', totalx);
+          // console.log('handleCarousel'+ totalx);
           
-          if (Math.abs(dx) < thresold) {
+          if (Math.abs(dx) < thresold && prevDx != dx) {
             //just translate the position
-            console.log('dx: ', dx);
+            console.log('dx: '+ dx);
             updateTransform($wrap, {
               x: totalx,
               y: 0
             });
           } //otherwise do nothing...
+          prevDx = dx;
         } else if (e.type === 'panend') {
+          prevDx = 0;
           if (Math.abs(e.deltaX) > w/2) {
             direction ? next() : prev();  
           }else{
@@ -240,19 +230,19 @@
         var h = rect.height;
         //assume is minimium scale is 1, both w,h  >  pw, ph
         if (deltaPos.left > 0) {
-          deltaPos.left + totalDeltaPos.left > pLeftTopPos.left && (deltaPos.left = pLeftTopPos.left - initPos.left);
+          initPos.left + totalDeltaPos.left > pLeftTopPos.left && (deltaPos.left = pLeftTopPos.left - initPos.left);
         }
 
         if (deltaPos.left < 0) {
-          deltaPos.left + totalDeltaPos.left + w < pRightBottomPos.left && (deltaPos.left = pRightBottomPos.left - w - initPos.left);
+          initPos.left + totalDeltaPos.left + w < pRightBottomPos.left && (deltaPos.left = pRightBottomPos.left - w - initPos.left);
         }
 
         if (deltaPos.top > 0) {
-          (totalDeltaPos.top + totalDeltaPos.top) > pLeftTopPos.top && (deltaPos.top = pLeftTopPos.top - initPos.top);
+          initPos.top + totalDeltaPos.top > pLeftTopPos.top && (deltaPos.top = pLeftTopPos.top - initPos.top);
         }
 
         if (deltaPos.top < 0) {
-          (totalDeltaPos.top + totalDeltaPos.top + h < pRightBottomPos.top) && (deltaPos.top = pRightBottomPos.top - h - initPos.top);
+          initPos.top + totalDeltaPos.top + h < pRightBottomPos.top && (deltaPos.top = pRightBottomPos.top - h - initPos.top);
         }
         console.log('deltaPos ', deltaPos);
         return {
@@ -287,25 +277,15 @@
       }
     };
 
-    var handlePan = function($el, $parent) {
-      var handleZoomPanFn = handleZoomPan($el, $parent);
-      var handleCarouselFn = handleCarousel($el);
-      return function(e) {
-        console.log(e);
-        var transform = $el.data('transform');
-        if (transform && transform.scale) {
-          handleZoomPanFn(e);
-        } else {
-          handleCarouselFn(e);
-        }
-      };
-    };
+
 
     new Hammer(targetEl,{
-        dragBlockHorizontal: true,
+        
         recognizers: [
           [Hammer.Pan, {
-            direction: Hammer.DIRECTION_HORIZONTAL
+            direction: Hammer.DIRECTION_HORIZONTAL,
+            threshold: 10,
+            pointers: 1
           }]
           ]
     }).on('panstart panmove panend', handleCarousel($(targetEl)));//for carousel
@@ -340,9 +320,7 @@
 
 
 
-    var locked = false;
     var updateTransform = function($el, translate3d, scale, origin) {
-      locked = true;
       var transform = $el.data('transform') || {};
       if (translate3d) {
         transform.translate3d = translate3d;
@@ -356,17 +334,17 @@
         transform.origin = origin;
       }
       $el.data('transform', transform);
-      var webkitTransform = '';
-      if (transform.translate3d) {
-        webkitTransform += 'translate3d( ' + transform.translate3d.x + 'px,' + transform.translate3d.y + 'px, 0)';
-      }
 
-      if (transform.scale) {
-        webkitTransform += ' scale(' + transform.scale + ',' + transform.scale + ')';
-      }
-      console.log('transform ', webkitTransform);
+      window.requestAnimationFrame((function(transform) {
+        var webkitTransform = '';
+        if (transform.translate3d) {
+          webkitTransform += 'translate3d( ' + transform.translate3d.x + 'px,' + transform.translate3d.y + 'px, 0)';
+        }
 
-      window.requestAnimationFrame(function() {
+        if (transform.scale) {
+          webkitTransform += ' scale(' + transform.scale + ',' + transform.scale + ')';
+        }
+        console.log('transform '+transform.translate3d.x);
         $el.css({
           webkitTransform: webkitTransform
         });
@@ -377,8 +355,7 @@
             webkitTransformOrigin: transform.origin.x + ' ' + transform.origin.y
           });
         }
-        locked = false;
-      });
+      }( transform)));
     };
   }
   </script>

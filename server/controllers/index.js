@@ -49,17 +49,26 @@ module.exports.controller = function(app) {
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
     var searchTxt = query.q;
+    var start = query.start || 0;
 
     q.all([q.nfcall(itemModel.search.bind(itemModel), searchTxt), getMenus()]).spread(function(items, allMenus) {
       q.all([ItemCtrl.addItemsPromise(items)]).spread(function(itemsData) {
+        itemModel.searchCount(searchTxt, function(err, countData) {  //support first cate only
+          var count = 20;
+          if(!err && countData.length){
+            count = countData[0].count;
+          }
+          var data = {
+            page: 'search',
+            start: start,
+            count: count,
+            q:searchTxt,
+            menus: allMenus,
+            items: itemsData
+          };
+          res.render('index', data);  
+        });
         
-        var data = {
-          page: 'search',
-          menus: allMenus,
-          items: itemsData
-      };
-      // res.send(data);
-        res.render('index', data);
       }).fail(function(err) {
         res.send(err)
       });
@@ -69,27 +78,40 @@ module.exports.controller = function(app) {
 
 
   var renderOthers = function(req, res, next, query) {
-    console.log('in /others');
+    console.log('in /others  page', query.page);
     var page = query.page;
+    var start = query.start || 0;
+
 
     q.all([q.nfcall(menuModel.findOne.bind(menuModel), { name: page }), getMenus()]).spread(function(menu, allMenus) {
       
       var aCates = _.pluck(menu.categories, 'id');
       
       getCategoriesData(aCates).then(function(rData) {
-        console.log('====> data received.')
-        var data = {
-          page: page,
-          menus: allMenus,
-          items: rData[0].items
-        };
+        itemModel.queryByCateCount(aCates[0], function(err, countData) {  //support first cate only
+          var count = 20;
+          if(!err && countData.length){
+            count = countData[0].count;
+          }
+          console.log('====> data received.')
+          var data = {
+            start: start,
+            page: page,
+            count: count,
+            menus: allMenus,
+            items: rData[0].items
+          };  
+          console.log('====> before rendering');
+          res.render('index', data);
+        });
+        
 
-        console.log('====> before rendering');
-        res.render('index', data);
+        
         // res.send('hello');
       }).fail(function(e) {
         console.log('failed', e);
       });
+
     });
   };
 
@@ -209,14 +231,14 @@ module.exports.controller = function(app) {
     return defer.promise;
   };
 
-
-  var getCategoriesData = function(cateIds) {
+  var pageNum = 20;
+  var getCategoriesData = function(cateIds, start) {
     return q.all(cateIds.map(function(cateId) {
-      return assembleCateAndItems(cateId);
+      return assembleCateAndItems(cateId, null, start, pageNum);
     }));
   };
 
-  var assembleCateAndItems = function(cateId, homeCateId) {
+  var assembleCateAndItems = function(cateId, homeCateId, start, num) {
     var cateWithItems = {};
     var defer = q.defer();
     cateModel.queryById(cateId, function(err, results) {
@@ -241,7 +263,7 @@ module.exports.controller = function(app) {
         cateWithItems.items = items;
         cateWithItems.homeCateId = homeCateId;
         defer.resolve(cateWithItems);
-      }, 0 , 20);
+      }, start , start+num);
     });
     return defer.promise;
   };

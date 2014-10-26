@@ -245,3 +245,20 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 .animate {
   -webkit-transition: all .3s;
 }
+
+.paging-container{
+  height: 70px;
+}
+.paging-container .prev-page, .paging-container .next-page{
+  display: inline-block;
+  width: 50%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.disabled{
+  opacity: .3;
+}

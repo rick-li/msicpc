@@ -1,4 +1,16 @@
 #content.page-content
+  - console.log('count ', count);
+  - start = parseInt(start);
+  - var prevPage = (start-20)<0?0:start-20;
+  - var nextPage = (start+20)>count?count:start+20;
+  - var prevEnabled = start > 0;
+  - console.log('===> start + 20', start+20);
+  - var nextEnabled = (start + 20) < count;
+  - var prevPageCls = prevEnabled?'prev-page':'prev-page disabled';
+  - var nextPageCls = nextEnabled?'next-page':'next-page disabled';
+  - var path = q?'/search':'/index';
+  - var prevHref = prevEnabled?path+'?page='+page+'&start='+prevPage+'&q='+q: '#';
+  - var nextHref = nextEnabled?path+'?page='+page+'&start='+nextPage+'&q='+q: '#';
 
   .page-header
     a.deploy-sidebar(href="#")
@@ -20,7 +32,11 @@
 
       .decoration.hide-if-responsive
 
-  .decoration
+  .paging-container
+    a(href="#{prevHref}")(class='#{prevPageCls}')
+      上一页
+    a(href="#{nextHref}")(class='#{nextPageCls}')
+      下一页
   p.copyright.uppercase.center-text.no-bottom.
     copyright 2014<br> 上海人口和计划生育
 
