@@ -22,7 +22,8 @@
     "OwlCarousel": "~1.3.2",
     "videojs": "4.6.3",
     "jquery-hammerjs": "2.0.0",
-    "hammer-touchemulator": "0.0.2"
+    "hammer-touchemulator": "0.0.2",
+    "enquire": "~2.1.2"
   }
 
 }

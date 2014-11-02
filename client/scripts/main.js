@@ -6,7 +6,8 @@ require.config({
     'owl': '../bower_components/OwlCarousel/owl-carousel/owl.carousel.min',
     'video': '../bower_components/videojs/dist/video-js/video',
     'hammer': '../bower_components/hammerjs/hammer',
-    'domReady': '../bower_components/domReady/domReady'
+    'domReady': '../bower_components/domReady/domReady',
+    'enquire': '../bower_components/enquire/dist/enquire'
   },
   shim: {
     'owl': ['jquery'],
