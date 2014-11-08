@@ -112,7 +112,8 @@ define(function(require, exports, module) {
   }
 
   function playVideo(containerEl, url, image) {
-    var videohtml = '<video id="splayer" width="100%" height= "100%" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered" poster="' + image + '">' +
+    $('.item-content').css({'background': 'black'});
+    var videohtml = '<video id="splayer" width="100%" height= "50%" controls preload="auto" class="video-js vjs-default-skin vjs-big-play-centered" poster="' + image + '">' +
       '<source src="' + url + '" type="video/mp4" />' +
       '</video>'
     containerEl.find('.item-content').append($(videohtml));
