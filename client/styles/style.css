@@ -21,6 +21,7 @@
   z-index:10;
   display:block;
   min-height:580px;
+  overflow-x:hidden;
 }
 .page-content-wrapper {
   display:block;
@@ -30,9 +31,7 @@
   padding-bottom:15px;
 }
 .page-sidebar {
-  background-image:url(../images/misc/menu-bg.png);
-  background-repeat:repeat;
-  background-size:75px 75px;
+  background: url("../images/sidebar-bg/bg.jpg") no-repeat;
   width:274px;
   display:block;
   position:absolute;
@@ -41,7 +40,7 @@
   left:0px;
   bottom:0px;
   overflow:hidden;
-  
+  height: 100%;
 }
 .page-sidebar-scroll {
   z-index:2;

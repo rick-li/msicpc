@@ -263,7 +263,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 /**
 *  Phone devices
 */
-@media only screen and (max-device-width : 600px) {
+@media only screen and (max-width : 600px) {
   .home-cate-tab.active {
     z-index: 10 !important;
   }

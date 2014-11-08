@@ -31,10 +31,10 @@ define(function(require, exports, module) {
           $(this).closest(".slider-container").find(".homepage-slider").trigger('owl.prev');
           return false;
         });
-
-    enquire.register("only screen and (max-device-width : 600px)", {
+        // alert( (window.innerWidth > 0) ? window.innerWidth : screen.width);
+    enquire.register("screen and (max-width : 600px)", {
       match: function () {
-        // alert('phone devices')
+        // alert('phone devices');
         //mobile
          //carousel
         var owlQuoteControls = $(".quote-slider");
