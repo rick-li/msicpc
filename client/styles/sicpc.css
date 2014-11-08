@@ -74,7 +74,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 }
 .page-sidebar {
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  
 }
 .page-content {
   position: relative;
@@ -181,8 +181,13 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
   left: 0;
   top: 0;
   width: 100%;
+  height: 100%;
+}
+.item-content{
+  height: 100%;
 }
 .item-content img {
+  top: 0 !important;
   width: 100%;
   margin: 0 auto;
 }
@@ -255,15 +260,15 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 /**
 *  Phone devices
 */
-@media screen and (max-width: 768px) {
+@media only screen and (max-device-width : 600px) {
   .home-cate-tab.active {
-  z-index: 10;
+    z-index: 10 !important;
   }
   .home-cate-tab:not(.active) {
-    opacity: 0.5;
+    opacity: 0.5 !important;
   }
   .home-cate-content:not(.active) {
-    display: none;
+    display: none !important;
   }
   .home-cate-content-item img {
     margin: 0 auto;
@@ -274,16 +279,18 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 /**
 *  Tablet devices
 */
-@media screen and (min-width: 768px) {
-    
+@media only screen and (min-width: 600px) {
   .editor-slider img{
     width: auto;
   }
-  
-  .homepage-slider>div{
+  .homepage-slider > div{
     float: left;
-    width: 30%;
+    width: 33% !important;
   }
+  /*.editor-slider .owl-wrapper .owl-item{
+    float: left;
+    width: 30% !important;
+  }*/
 
   .editor-caption-wrap{
     
@@ -298,7 +305,8 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
     */
     .home-cate-content{
       float: left;
-      width: 49%;
+      width: 48%;
+      text-align: center;
     }
     .home-cate-tab{
       float: left;
@@ -310,3 +318,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
     }
 
 }
+
+
+
+
