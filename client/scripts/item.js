@@ -47,6 +47,7 @@ define(function(require, exports, module) {
 
   window.viewItem = function(title, type, image, text, url) {
     
+
     if (type === '链接') {
       window.location = url;
       return;
