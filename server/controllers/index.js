@@ -50,8 +50,9 @@ module.exports.controller = function(app) {
     var query = url_parts.query;
     var searchTxt = query.q;
     var start = query.start || 0;
+    start = parseInt(start);
 
-    q.all([q.nfcall(itemModel.search.bind(itemModel), searchTxt), getMenus()]).spread(function(items, allMenus) {
+    q.all([q.nfcall(itemModel.search.bind(itemModel), searchTxt, start, 20), getMenus()]).spread(function(items, allMenus) {
       q.all([ItemCtrl.addItemsPromise(items)]).spread(function(itemsData) {
         itemModel.searchCount(searchTxt, function(err, countData) {  //support first cate only
           var count = 20;
@@ -81,13 +82,14 @@ module.exports.controller = function(app) {
     console.log('in /others  page', query.page);
     var page = query.page;
     var start = query.start || 0;
+    start = parseInt(start);
 
 
     q.all([q.nfcall(menuModel.findOne.bind(menuModel), { name: page }), getMenus()]).spread(function(menu, allMenus) {
       
       var aCates = _.pluck(menu.categories, 'id');
       
-      getCategoriesData(aCates).then(function(rData) {
+      getCategoriesData(aCates, start).then(function(rData) {
         itemModel.queryByCateCount(aCates[0], function(err, countData) {  //support first cate only
           var count = 20;
           if(!err && countData.length){
@@ -238,7 +240,8 @@ module.exports.controller = function(app) {
     }));
   };
 
-  var assembleCateAndItems = function(cateId, homeCateId, start, num) {
+  var assembleCateAndItems = function(cateId, homeCateId, start, pageNum) {
+    var limit = start + pageNum;
     var cateWithItems = {};
     var defer = q.defer();
     cateModel.queryById(cateId, function(err, results) {
@@ -263,7 +266,7 @@ module.exports.controller = function(app) {
         cateWithItems.items = items;
         cateWithItems.homeCateId = homeCateId;
         defer.resolve(cateWithItems);
-      }, start , start+num);
+      }, start , pageNum);
     });
     return defer.promise;
   };

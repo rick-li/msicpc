@@ -30,14 +30,14 @@ var baseMethods = {
         sql.where(self.alias + '.params like ' + '\'%' + paramKey + '=' + params[paramKey] + '%\'');
       });
     }
-    if (limits) {
-      if (limits[0]) {
-        sql.offset(limits[0]);
-      }
-      if (limits[1]) {
-        sql.limit(limits[1]);
-      }
+    if(limits){
+      var start = limits[0] || 0;
+      var limit = limits[1] || 100;
+      sql.offset(start);
+      sql.limit(limit);
+      
     }
+    
 
     var strSql = sql.toString();
     console.log('sql is ', strSql);
@@ -180,15 +180,13 @@ Items.prototype.queryByCate = function() {
 };
 
 Items.prototype.search = function() {
+  console.log('search ', arguments);
   var args = Array.prototype.slice.call(arguments);
   var keyword = args[0];
-  var start = null;
-  var limit = null;
-  var cb = args[1];
-  if (args.length == 4) {
-    start = args[2];
-    limit = args[3];
-  }
+  start = args[1];
+  limit = args[2];
+  var cb = args[3];
+  
   var searchExpr = squel.expr().and('i.title like "%'+keyword+'%"').or('i.introtext like "%'+keyword+'%"')
   var wheres = _.union([searchExpr], this.defaultWheres);
   var table = this.tableName;
