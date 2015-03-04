@@ -4,6 +4,23 @@ define(function(require, exports, module) {
   var enquire = require('enquire');
   module.exports = function() {
     domReady(function() {
+    window.openItemUrl = function() {
+      if(location.hash.indexOf('item')!=-1){
+        var hash = window.location.hash;
+        
+          hash = hash.replace('#item!', '');
+          var params = hash.split('!');
+          params = params.filter(function(param) {
+            return param != null;
+          });
+
+          console.log('params', params);
+          window.viewItem.apply(this, params);
+          return;
+      }
+    }
+    openItemUrl();
+
        //select menu item
     $('.nav-item:contains('+currentPage+')').find('em').removeClass('unselected-item').addClass('selected-item')
     .parents('.navigation-item').find('.submenu-deploy em').removeClass('dropdown-item')

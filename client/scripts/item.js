@@ -38,6 +38,12 @@ define(function(require, exports, module) {
   $(window).on('hashchange', function(e) {
     if (!window.location.hash) {
       goback();
+    }else{
+      if(window.hashSetByItem){
+        window.hashSetByItem = false;
+        return;
+      }
+      window.openItemUrl();
     }
   });
 
@@ -52,10 +58,12 @@ define(function(require, exports, module) {
       window.location = url;
       return;
     }
-    window.location.hash = 'item';
-    (image === 'undefined') && (image = null);
+    
+    (image === 'undefined' || image === 'null') && (image = null);
     (text === 'undefined') && (text = null);
     (url === 'undefined') && (url = null);
+    window.hashSetByItem = true;
+    window.location.hash = 'item!'+title+'!'+type+'!'+image+'!'+text+'!'+url;
 
     $('.all-elements').hide();
     var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn"></div><div class="item-title"></div></div><div id="item-content" class="item-content"></div></div>');
@@ -78,7 +86,7 @@ define(function(require, exports, module) {
 
 
     $('.item-back-btn').click(function() {
-      history.back();
+      location.href = '/index';
     });
   };
 
