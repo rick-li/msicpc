@@ -1,4 +1,4 @@
-var requireLogin = true;
+var requireLogin = false;
 var models = require('../models/coupon-models');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
