@@ -102,12 +102,16 @@ module.exports.controller = function(app) {
   app.get('/coupon/loggedin/showcoupon', function(req, res, next){
     models.Coupons.findOneAndUpdate({status: 'taken'}).where('status').nin(['locked', 'taken']).exec().then(function (coupon) {
       if(coupon){
-        console.log('user ', req.session.user);
+        
         console.log('coupone ', coupon);
-        models.Users.findByIdAndUpdate(req.session.user._id, {hastaken: true}).exec().then(function (user) {
-          console.log('Set taken=true for ', user.name);
-        });
-        req.session.loggedin = false;  
+        if(requireLogin){
+          console.log('user ', req.session.user);
+          models.Users.findByIdAndUpdate(req.session.user._id, {hastaken: true}).exec().then(function (user) {
+            console.log('Set taken=true for ', user.name);
+          });
+          req.session.loggedin = false;    
+        }
+        
         res.render('coupon-taken', coupon);
         return;
       }
