@@ -1,0 +1,60 @@
+doctype html
+html(lang='en')
+  head
+    link(rel='stylesheet', href='/client/bower_components/amazeui/dist/css/amazeui.min.css')
+    link(rel='stylesheet', href='/client/styles/coupon.css')
+
+
+.am-g.am-container.coupon-wrap
+  .coupon-row.coupon-title
+      img(src="/client/images/coupon/coupon-title.jpg")
+  .coupon-row.coupon-content
+      form.am-form(method="post" id="coupon-form")
+        .am-form-group
+          label 姓名
+          input.am-form-field(type="text" name="name" id="name")
+        .am-form-group
+          label 卡号
+          input.am-form-field(type="text" name="cardno" id="cardno")
+        .am-form-group
+          label 工作单位
+          input.am-form-field(type="text" name="company" id="company")
+        br
+        a.am-btn.am-btn-primary.coupon-submit(role="button" onclick="submit()")提交
+
+script(src='/client/bower_components/jquery/dist/jquery.min.js')    
+script.
+      $(document).ready(function(){
+        if(location.search.indexOf('error')!=-1 && location.search.indexOf('1')!=-1){
+          alert('信息错误，请重新输入!');
+        }
+
+        if(location.search.indexOf('error')!=-1 && location.search.indexOf('2')!=-1){
+          alert('已領過優惠券請勿重複領取!');
+        }
+      });
+      function submit(){
+        var name = $('#name');
+        var cardno = $('#cardno');
+        var company = $('#company');
+        
+        $('.am-form-group').removeClass('am-form-error');
+        var validated = true;
+        if(!name.val()){
+          validated = false;
+          name.parents('.am-form-group').addClass('am-form-error');
+        }
+        if(!cardno.val()){
+          validated = false;
+          cardno.parents('.am-form-group').addClass('am-form-error');
+        }
+        if(!company.val()){
+          validated = false;
+          company.parents('.am-form-group').addClass('am-form-error');
+        }
+
+        if(validated){
+          $('#coupon-form')[0].submit();
+        }
+      }      
+

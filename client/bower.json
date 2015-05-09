@@ -23,7 +23,8 @@
     "videojs": "4.6.3",
     "jquery-hammerjs": "2.0.0",
     "hammer-touchemulator": "0.0.2",
-    "enquire": "~2.1.2"
+    "enquire": "~2.1.2",
+    "amazeui": "latest"
   }
 
 }

@@ -13,7 +13,8 @@
         "angular-resource": "latest",
         "angular-bootstrap": "latest",
         "ng-file-upload": "latest",
-        "ckeditor": "4"
+        "ckeditor": "4",
+        "amazeui": "latest"
     },
     "devDependencies": {}
 }

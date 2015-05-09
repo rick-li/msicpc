@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    link(rel='stylesheet', href='/client/bower_components/amazeui/dist/css/amazeui.min.css')
+    link(rel='stylesheet', href='/client/styles/coupon.css')
+
+  body
+    .am-g.am-container.coupon-wrap
+      .coupon-row.coupon-title
+        img(src="/client/images/coupon/coupon-title.jpg")
+       .coupon-row.coupon-content
+        form.am-form(method="post" id="coupon-upload-form" target="" enctype='multipart/form-data')
+          .am-form-group 
+            label 上传(请先把xls保存成csv格式)
+            input.am-form-field(type="file" name="file" )
+          .am-form-group 
+            input.am-btn.am-btn-primary.coupon-submit(role="button" type="submit" value="提交")
+
+
+
+    script(src='/client/bower_components/jquery/dist/jquery.min.js')    
+    script.
+      $(document).ready(function(){
+        var status = '#{status}';
+        
+        if(status == 'success'){
+          alert('上传成功');
+        }
+        if(status == 'error'){
+          alert('上传失败');
+        }
+      });

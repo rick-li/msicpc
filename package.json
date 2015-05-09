@@ -10,7 +10,8 @@
     "mysql": "~2.1.1",
     "squel": "~3.1.1",
     "winston": "~0.7.3",
-    "MD5": "1.2.1"
+    "MD5": "1.2.1",
+    "connect-multiparty": "^1.2.5"
   },
   "devDependencies": {
     "gulp": "~3.8.6",
