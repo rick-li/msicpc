@@ -1,12 +1,9 @@
 html, body{
-  height: 100%;
-  width: 100%;
+  background: #8c0001;
 }
 .coupon-wrap{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #8c0001;
+  
+  
   padding: 0;
   margin: 0;
 
