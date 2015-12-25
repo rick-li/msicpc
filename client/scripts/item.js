@@ -63,7 +63,8 @@ define(function(require, exports, module) {
     (text === 'undefined') && (text = null);
     (url === 'undefined') && (url = null);
     window.hashSetByItem = true;
-    window.location.hash = 'item!'+title+'!'+type+'!'+image+'!'+text+'!'+url;
+    window.location.hash = 'base64!'+window.btoa(encodeURIComponent(title+'!'+type+'!'+image+'!'+text+'!'+url));
+    //window.location.hash = 'item!'+title+'!'+type+'!'+image+'!'+text+'!'+url;
 
     $('.all-elements').hide();
     var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn"></div><div class="item-title"></div></div><div id="item-content" class="item-content"></div></div>');
@@ -92,7 +93,7 @@ define(function(require, exports, module) {
 
   function playImage(containerEl, url) {
     var images = url.split(',');
-    
+
     var shtml = '<div class="sliderHolder" data-elem="sliderHolder">'+
     '<div class="slider" data-elem="slider" data-options="" data-show="" data-hide="">'+
         '<div class="slides" data-elem="slides"></div>'+
@@ -100,7 +101,7 @@ define(function(require, exports, module) {
     shtml += images.map(function(url) {
           return '<li><img src="' + url + '" alt=""/></li>';
     }).join('');
-            
+
     shtml += '</ul>';
     shtml += '</div>';
     shtml += '</div>';
@@ -138,5 +139,5 @@ define(function(require, exports, module) {
     splayer = $('audio')[0];
   }
 
- 
+
 });
