@@ -48,3 +48,11 @@ var HomeCatesSchema = new Schema({
 });
 var HomeCates = mongoose.model('HomeCates', HomeCatesSchema);
 exports.HomeCates = HomeCates;
+
+
+var CacheSchema = new Schema({
+  md5: String,
+  content: String
+});
+var Caches = mongoose.model('Caches', CacheSchema);
+exports.Caches = Caches;
