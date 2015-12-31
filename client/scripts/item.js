@@ -52,19 +52,20 @@ define(function(require, exports, module) {
   var regex = /{(\S+)}(\S+){\S+}/;
 
   window.viewItem = function(title, type, image, text, url) {
-    
+
 
     if (type === '链接') {
       window.location = url;
       return;
     }
-    
+
     (image === 'undefined' || image === 'null') && (image = null);
     (text === 'undefined') && (text = null);
     (url === 'undefined') && (url = null);
     window.hashSetByItem = true;
-    window.location.hash = 'base64!'+window.btoa(encodeURIComponent(title+'!'+type+'!'+image+'!'+text+'!'+url));
-    //window.location.hash = 'item!'+title+'!'+type+'!'+image+'!'+text+'!'+url;
+    $.post('/cache', {content: title+'!'+type+'!'+image+'!'+text+'!'+url}).done(function(res){
+      window.location.hash = 'item='+res['_id'];
+    });
 
     $('.all-elements').hide();
     var containerEl = $('<div class="item-container"><div class="item-header"><div class="item-back-btn"></div><div class="item-title"></div></div><div id="item-content" class="item-content"></div></div>');

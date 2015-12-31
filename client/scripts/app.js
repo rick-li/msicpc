@@ -5,18 +5,18 @@ define(function(require, exports, module) {
   module.exports = function() {
     domReady(function() {
     window.openItemUrl = function() {
-      if(location.hash.indexOf('base64!')!=-1){
-        var hash = decodeURIComponent(window.atob(window.location.hash.replace('#base64!', '')));
+      if(location.hash.indexOf('item=')!=-1){
+        var cacheId = window.location.hash.replace('#item=', '');
 
-          //hash = hash.replace('#item!', '');
-          var params = hash.split('!');
+        $.get('/cache?id='+cacheId).done(function(res){
+          var params = res.content.split('!');
           params = params.filter(function(param) {
             return param != null;
           });
 
-          console.log('params', params);
           window.viewItem.apply(this, params);
           return;
+        });
       }
     }
     openItemUrl();
