@@ -21,7 +21,9 @@ var TopItemsSchema = new Schema({
   itemType: String,
   url: String,
   order: Number,
-  imageName: {type: String, default: ''}
+  imageName: {type: String, default: ''},
+  image: {type: String, default: ''},
+  img: {type: String, default: ''}
 });
 var TopItems = mongoose.model('TopItems', TopItemsSchema);
 exports.TopItems = TopItems;

@@ -1,0 +1,203 @@
+21 Apr 12:02:59 - [33m[nodemon] v1.0.17[39m
+21 Apr 12:02:59 - [33m[nodemon] to restart at any time, enter `rs`[39m
+21 Apr 12:02:59 - [33m[nodemon] watching: *.*[39m
+21 Apr 12:02:59 - [32m[nodemon] starting `node server/app.js`[39m
+exception in nodemon killing node
+Error: EBADF, read
+
+If appropriate, please file an error: http://github.com/remy/nodemon/issues/new
+
+admin-items.js
+index.js
+login.js
+Express server listening on port 3000
+admin-items.js
+index.js
+login.js
+Express server listening on port 3000
+query is  { bg: '2' }
+[90mGET /index?bg=2 [36m304 [90m447ms[0m
+[90mGET /app/styles/style.css [36m304 [90m11ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m8ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m8ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m8ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m4ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m6ms[0m
+[90mGET /app/images/sidebar-bg/2.jpg [36m304 [90m6ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m5ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m4ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m3ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m2ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /app/bower_components/snapjs/snap.min.js [36m304 [90m1ms[0m
+[90mGET /app/scripts/app.js [36m304 [90m1ms[0m
+query is  { bg: '1' }
+[90mGET /index?bg=1 [32m200 [90m44ms - 1.26kb[0m
+[90mGET /app/styles/style.css [36m304 [90m2ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m2ms[0m
+[90mGET /app/styles/sicpc.css [32m200 [90m4ms - 219b[0m
+[90mGET /app/scripts/alameda.js [32m200 [90m5ms - 49.83kb[0m
+[90mGET /app/images/sidebar-bg/1.jpg [36m304 [90m2ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m0ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m2ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [32m200 [90m22ms - 70.38kb[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m1ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m1ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m1ms[0m
+[90mGET /app/bower_components/snapjs/snap.min.js [36m304 [90m1ms[0m
+[90mGET /app/scripts/app.js [36m304 [90m1ms[0m
+query is  { bg: '1', from: 'message', isappinstalled: '0' }
+[90mGET /index?bg=1&from=message&isappinstalled=0 [32m200 [90m51ms - 1.26kb[0m
+[90mGET /app/styles/style.css [32m200 [90m3ms - 13.9kb[0m
+[90mGET /app/styles/framework.css [32m200 [90m1ms - 27.57kb[0m
+[90mGET /app/styles/sicpc.css [32m200 [90m3ms - 219b[0m
+[90mGET /app/scripts/alameda.js [32m200 [90m2ms - 49.83kb[0m
+[90mGET /app/images/misc/logo.png [32m200 [90m4ms - 70.38kb[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [32m200 [90m3ms - 3.53kb[0m
+[90mGET /app/images/misc/shortcut_close.png [32m200 [90m1ms - 4.15kb[0m
+[90mGET /app/images/icons/settings/cog2.png [32m200 [90m3ms - 1.36kb[0m
+[90mGET /app/images/sidebar-bg/1.jpg [32m200 [90m60ms - 173.13kb[0m
+[90mGET /app/images/icons/misc/home.png [32m200 [90m3ms - 1.22kb[0m
+[90mGET /app/scripts/main.js [32m200 [90m1ms - 266b[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [32m200 [90m2ms - 81.69kb[0m
+query is  { bg: '1', from: 'message', isappinstalled: '0' }
+[90mGET /index?bg=1&from=message&isappinstalled=0 [36m304 [90m53ms[0m
+[90mGET /app/styles/style.css [36m304 [90m2ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m2ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m1ms[0m
+[90mGET /app/images/sidebar-bg/1.jpg [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m1ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m2ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m2ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m1ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m2ms[0m
+query is  { bg: '1', from: 'message', isappinstalled: '0' }
+[90mGET /index?bg=1&from=message&isappinstalled=0 [36m304 [90m35ms[0m
+[90mGET /app/styles/style.css [36m304 [90m1ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m1ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m0ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m1ms[0m
+[90mGET /app/images/sidebar-bg/1.jpg [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m2ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m2ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m2ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m4ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m1ms[0m
+query is  { bg: '1', from: 'message', isappinstalled: '0' }
+[90mGET /index?bg=1&from=message&isappinstalled=0 [32m200 [90m31ms - 1.26kb[0m
+[90mGET /app/styles/style.css [32m200 [90m3ms - 13.9kb[0m
+[90mGET /app/styles/sicpc.css [32m200 [90m2ms - 219b[0m
+[90mGET /app/styles/framework.css [32m200 [90m1ms - 27.57kb[0m
+[90mGET /app/scripts/alameda.js [32m200 [90m2ms - 49.83kb[0m
+[90mGET /app/images/misc/logo.png [32m200 [90m2ms - 70.38kb[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [32m200 [90m1ms - 3.53kb[0m
+[90mGET /app/images/misc/shortcut_close.png [32m200 [90m2ms - 4.15kb[0m
+[90mGET /app/images/icons/misc/home.png [32m200 [90m1ms - 1.22kb[0m
+[90mGET /app/images/icons/settings/cog2.png [32m200 [90m2ms - 1.36kb[0m
+[90mGET /app/images/sidebar-bg/1.jpg [32m200 [90m61ms - 173.13kb[0m
+[90mGET /app/scripts/main.js [32m200 [90m2ms - 266b[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [32m200 [90m2ms - 81.69kb[0m
+query is  { bg: '2' }
+[90mGET /index?bg=2 [32m200 [90m33ms - 1.26kb[0m
+[90mGET /app/styles/style.css [36m304 [90m1ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m2ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m2ms[0m
+[90mGET /app/images/sidebar-bg/2.jpg [32m200 [90m2ms - 114.8kb[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m3ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m1ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m2ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m2ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m4ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m2ms[0m
+query is  { bg: '3' }
+[90mGET /index?bg=3 [32m200 [90m27ms - 1.26kb[0m
+[90mGET /app/styles/style.css [36m304 [90m2ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m1ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m2ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m4ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m2ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m1ms[0m
+[90mGET /app/images/sidebar-bg/3.jpg [32m200 [90m73ms - 183.22kb[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m3ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m1ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m2ms[0m
+query is  { bg: '4' }
+[90mGET /index?bg=4 [32m200 [90m27ms - 1.26kb[0m
+[90mGET /app/styles/style.css [36m304 [90m1ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m1ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m6ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m1ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m1ms[0m
+[90mGET /app/images/sidebar-bg/4.jpg [32m200 [90m55ms - 153.44kb[0m
+[90mGET /app/scripts/main.js [36m304 [90m1ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m1ms[0m
+query is  { bg: '2' }
+[90mGET /index?bg=2 [36m304 [90m36ms[0m
+[90mGET /app/styles/style.css [36m304 [90m1ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m1ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m1ms[0m
+[90mGET /app/images/sidebar-bg/2.jpg [36m304 [90m0ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m0ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m2ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m6ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m1ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m3ms[0m
+query is  { bg: '4' }
+[90mGET /index?bg=4 [36m304 [90m31ms[0m
+[90mGET /app/styles/style.css [36m304 [90m2ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m2ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m1ms[0m
+[90mGET /app/images/sidebar-bg/4.jpg [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m5ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m1ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m1ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m1ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m1ms[0m
+query is  { bg: '2' }
+[90mGET /index?bg=2 [36m304 [90m37ms[0m
+[90mGET /app/styles/style.css [36m304 [90m2ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m1ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m2ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m2ms[0m
+[90mGET /app/images/sidebar-bg/2.jpg [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m1ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m1ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m1ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m1ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m2ms[0m
+query is  { bg: '4' }
+[90mGET /index?bg=4 [36m304 [90m44ms[0m
+[90mGET /app/styles/style.css [36m304 [90m2ms[0m
+[90mGET /app/styles/sicpc.css [36m304 [90m1ms[0m
+[90mGET /app/styles/framework.css [36m304 [90m1ms[0m
+[90mGET /app/scripts/alameda.js [36m304 [90m1ms[0m
+[90mGET /app/images/misc/logo.png [36m304 [90m1ms[0m
+[90mGET /app/images/sidebar-bg/4.jpg [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_magnifier.png [36m304 [90m1ms[0m
+[90mGET /app/images/misc/shortcut_close.png [36m304 [90m1ms[0m
+[90mGET /app/images/icons/misc/home.png [36m304 [90m1ms[0m
+[90mGET /app/scripts/main.js [36m304 [90m1ms[0m
+[90mGET /app/images/icons/settings/cog2.png [36m304 [90m2ms[0m
+[90mGET /app/bower_components/jquery/dist/jquery.min.js [36m304 [90m1ms[0m
