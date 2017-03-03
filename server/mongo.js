@@ -7,7 +7,7 @@ switch (env) {
     connStr = 'mongodb://localhost:27017/sicpc-video-unit';
     break;
   default:
-    connStr = 'mongodb://www.sicpc.com:27017/msicpc';
+    connStr = 'mongodb://localhost:27017/msicpc';
     // connStr = 'mongodb://localhost:27017/msicpc';
     break;
 }
